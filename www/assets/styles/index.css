@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  background-color: #00080e;
+}
+
+#navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #06192b;
+  width: 100%;
+  z-index: 1;
+  height: 10vh;
+}
+
+#navbar div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+#navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  transition: 0.3s;
+  border-radius: 30px;
+  height: 100%;
+  width: 100%;
+}
+
+#navbar a:hover {
+  color: #f5f5f5;
+  background-color: #0f3b64;
+}
+
+h1 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+
+#intro {
+  background: url('/assets/images/pc.jpeg');
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 100%;
+  color: white;
+}
+
+#explaining {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  margin: 10vh 20%;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+
+#explaining > * {
+  margin: 1vh;
+}
+
+#trend {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  width: 100%;
+}
+
+#boites {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+#boites .pc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  width: 20vw;
+  height: 20vh;
+  height: auto;
+}
+
+#boites .pc img {
+  height: 22vh;
+  width: 100%;
+  object-fit: fill;
+}
+
+.pc ul {
+  margin-top: 2vh;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.pc ul li {
+  margin: 1vh 0;
+}
+
+#footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #06192b;
+  color: white;
+  height: 10vh;
+  width: 100%;
+}

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Atlas Hardware</title>
+  <?php include_once "../components/header/fonts.html" ?>
   <link rel="stylesheet" href="/assets/styles/index.css">
   <?php include_once "../components/header/meta.html" ?>
 </head>
@@ -12,7 +13,7 @@
 
   <div id="navbar">
     <div>
-      <a href="/">Accueil</a>
+      <a href>Accueil</a>
     </div>
     <div>
       <a href="#">Trouver config</a>

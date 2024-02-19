@@ -1,6 +1,6 @@
 <?php
 
-function get_database_link(): \mysqli
+function get_database_link(): int | \mysqli
 {
   $host = getenv("DB_HOST");
   $user = getenv("DB_USER");
@@ -10,15 +10,19 @@ function get_database_link(): \mysqli
   if ($password === false) $password = NULL;
 
   if ($host === false || $user === false || $database === false) {
-    require_once "../error.php";
-    exit_with_error("Error: missing environment variables", 500);
+    return 1;
   }
 
   # We add p: before the host to force the use of a persistent connection
-  $link = mysqli_connect("p:$host", $user, $password);
+  $link = NULL;
+  try {
+    $link = mysqli_connect("p:$host", $user, $password);
+  } catch (\mysqli_sql_exception $exception) {
+    return $exception->getCode();
+  }
 
   if ($link === false)
-    exit_with_error("Error: could not connect to database", 500);
+    return 2;
 
   # If the database already exists, we select it. Otherwise, it'll be created when the admin sets up the database
   if (does_database_exist($link, $database)) {

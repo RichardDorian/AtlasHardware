@@ -14,3 +14,12 @@ SetEnv DB_HOST localhost
 SetEnv DB_USER root
 # SetEnv DB_PASSWORD root
 SetEnv DB_DATABASE atlashardware
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE image/svg
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+</IfModule>

@@ -12,6 +12,8 @@ The configuration we use is pretty standard for a PHP application.
 
 ```
 LoadModule rewrite_module modules/mod_rewrite.so
+LoadModule deflate_module modules/mod_deflate.so
+LoadModule filter_module modules/mod_filter.so
 
 DocumentRoot "path/to/project/www"
 <Directory "path/to/project/www">
@@ -34,3 +36,9 @@ expose_php=off
 
 In the `www` folder, there's a file called `.htaccess` which rewrite the URLs to remove the `.php` extension.
 For example, if you request `/test.php`, the server will return a `404` even if the file exists. However, if you request `/test`, the server will "call" the `/test/index.php` file.
+
+We also enable text compression (using `mod_deflate`) to reduce the amount of data sent over the network
+
+## Note on minification
+
+If you happen to run the server on a Linux machine, you can use [PageSpeed](https://www.modpagespeed.com/) which is a module made by Google that minifies the HTML, CSS and JavaScript files. It's a great tool to use, but it's not required. See the download page for Apache [here](https://www.modpagespeed.com/doc/download).

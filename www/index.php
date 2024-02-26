@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<?php
-include_once __DIR__ . "/../components/head/head.php" ?>
+<?php include_once __DIR__ . "/../components/head/head.php" ?>
 
 <body>
 

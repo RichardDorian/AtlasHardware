@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+html {
+  --color-background: #0e0e0e;
+  --color-background-hard: #080808;
+  --color-background-light: #1a1a1a;
+  --color-text: #c3c3c3;
+  --color-text-hard: #797979;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* 
+Source: https://gist.github.com/vinaynb/bad0b45d96d5f122dc17
+*/
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+}

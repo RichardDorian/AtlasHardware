@@ -5,15 +5,15 @@ function get_database_link(): int | \mysqli
   $host = getenv("DB_HOST");
   $user = getenv("DB_USER");
   $password = getenv("DB_PASSWORD");
-  $database = getenv("DB_DATABASE");
+  $database = "atlashardware";
 
   if ($password === false) $password = NULL;
 
-  if ($host === false || $user === false || $database === false) {
+  if ($host === false || $user === false) {
     return 1;
   }
 
-  # We add p: before the host to force the use of a persistent connection
+  // We add p: before the host to force the use of a persistent connection
   $link = NULL;
   try {
     $link = mysqli_connect("p:$host", $user, $password);
@@ -24,7 +24,7 @@ function get_database_link(): int | \mysqli
   if ($link === false)
     return 2;
 
-  # If the database already exists, we select it. Otherwise, it'll be created when the admin sets up the database
+  // If the database already exists, we select it. Otherwise, it'll be created when the admin sets up the database
   if (does_database_exist($link, $database)) {
     $link->select_db($database);
   }

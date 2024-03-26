@@ -5,7 +5,6 @@ require_once __DIR__ . "/../error.php";
 
 function setup_database(): void
 {
-  $database = getenv("DB_DATABASE");
   $link = get_database_link();
 
   if (gettype($link) === "integer") {
@@ -17,18 +16,13 @@ function setup_database(): void
     ]);
   }
 
-  $queries = [
-    "DROP DATABASE IF EXISTS $database",
-    "CREATE DATABASE $database",
-    "CREATE TABLE `$database`.`users` (`id` BINARY(16) NOT NULL, `username` VARCHAR(20) NOT NULL, `password` VARCHAR(60) NOT NULL, `avatar` LONGBLOB NULL DEFAULT NULL, PRIMARY KEY (`id`), UNIQUE `username` (`username`)) ENGINE = InnoDB",
-    "CREATE TABLE `$database`.`posts` (`id` BINARY(16) NOT NULL, `author` BINARY(16) NOT NULL, `date` DATETIME NOT NULL, `forked_from` BINARY(16) NULL DEFAULT NULL, `description` TEXT NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB"
-  ];
+  $setup_file_path = __DIR__ . "/setup.sql";
+  $setup_ressource = fopen($setup_file_path, "r");
+  $setup = fread($setup_ressource, filesize($setup_file_path));
 
-  foreach ($queries as $query) {
-    $link->query($query);
-  }
-
-  $link->select_db($database);
+  $link->multi_query($setup);
+  while ($link->next_result()) {}; // We wait for all the queries to finish
+  $link->select_db("atlashardware");
 
   echo "Database and tables created successfully";
 }

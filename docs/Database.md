@@ -8,13 +8,13 @@ We use MySQL. Being what is promoted by the school we didn't have much of a choi
 
 ## Tables
 
-### MCD
+### ERD (MCD)
 
 <!--
-https://www.mocodo.net/?mcd=eNpNTjsOwjAM3X0KHyADXVmROiKEVDFHjYeoJI4cA9fHSVPE5Of38fNSSc4Yg8OXoewTOSy-1g-Lcf7t1Qs8JKrx04Q3rurwdMXF3NC2PRx8MwSqq8SikTPMLBsFnIWTBf6SDQDcqTyj6cqdvHBKlLU7B4Yx94L1MLSmQ7I859_R_uBQvtDpRhY=
+https://www.mocodo.net/?mcd=eNpNjjEOwjAMRXefwgfI0K5dK3UDVUiIObSWiGjiyknL9XESCiyW_e33kpu4RAabE14jicG2xZ69p5AgBx262eCmXbBe71Yb44tFM7vbZAXG7b64-CjgyDGp6lxUAB9PVUx1MDjbRMeKZuRQiIr-PZ6DSmZAK8VJ3JocB4ALrYtTOHGB-8Pd_PgOBpan3gzCvmy-v8sNvAEsak94
 -->
 
-![MCD](./MCD.svg)
+![ERD](./ERD.svg)
 
 ### MRD
 

@@ -1,6 +1,6 @@
 # Web Server
 
-This document contains information about the web server we use and what program is open to the internet.
+This document contains information about the web server we use and what program is exposed to the internet.
 
 We decided to use Apache for the web server. It works well and is configurable. The school requires us to use Apache, so we didn't have much of a choice. We also use PHP for the server-side scripting (also required by the school).
 
@@ -37,7 +37,7 @@ expose_php=off
 In the `www` folder, there's a file called `.htaccess` which rewrite the URLs to remove the `.php` extension.
 For example, if you request `/test.php`, the server will return a `404` even if the file exists. However, if you request `/test`, the server will "call" the `/test/index.php` file.
 
-We also enable text compression (using `mod_deflate`) to reduce the amount of data sent over the network
+We also enable text compression (using `mod_deflate`) to reduce the amount of data sent over the network.
 
 ## Note on minification
 

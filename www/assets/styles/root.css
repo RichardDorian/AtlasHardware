@@ -10,6 +10,10 @@ html {
   --color-background-light: #1a1a1a;
   --color-text: #c3c3c3;
   --color-text-hard: #797979;
+  --color-text-primary: #121212;
+
+  --color-primary: #f5c518;
+  --color-secondary: #797979;
 }
 
 body {

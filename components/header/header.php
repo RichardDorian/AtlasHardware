@@ -8,11 +8,11 @@
     </button>
   </form>
   <?php
-    $connected = true;
+    $connected = false;
     if ($connected) {
       include_once __DIR__ . "/loggedin.php";
     } else {
-      include_once __DIR__ . "/no-account.php";
+      include_once __DIR__ . "/loggedout.php";
     }
   ?>
 </header>

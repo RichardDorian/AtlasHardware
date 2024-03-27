@@ -8,7 +8,7 @@
     </button>
   </form>
   <?php
-    $connected = false;
+    $connected = true;
     if ($connected) {
       include_once __DIR__ . "/loggedin.php";
     } else {

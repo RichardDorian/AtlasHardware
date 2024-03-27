@@ -12,6 +12,7 @@ footer {
 }
 
 footer > a {
+  margin-top: 15px;
   color: var(--color-text-primary);
   font-size: 16px;
 

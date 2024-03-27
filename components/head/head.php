@@ -12,6 +12,6 @@
     
     if (isset($scripts))
       foreach ($scripts as $script)
-        echo "<script src=\"/assets/scripts/$script\"></script>";
+        echo "<script src=\"/assets/scripts/$script\" defer></script>";
   ?>
 </head>

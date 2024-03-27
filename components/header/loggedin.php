@@ -6,7 +6,15 @@
   <span class="material-symbols-rounded">bookmark</span>
   <span>Saved</span>
 </a>
-<button id="account" class="with-icon">
-  <span class="material-symbols-rounded">account_circle</span>
-  <span>My account</span>
-</button>
+<div id="my-account">
+  <button class="with-icon">
+    <span class="material-symbols-rounded">account_circle</span>
+    <span>My account</span>
+  </button>
+  <div class="hidden">
+    <a href="/me">My account</a>
+    <a href="/me/posts">My posts</a>
+    <hr />
+    <a href="/logout">Logout</a>
+  </div>
+</div>

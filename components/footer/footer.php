@@ -13,8 +13,9 @@
       <a href="/login">Login</a>
     </div>
     <div>
-      <a>Conditions of Use</a>
-      <a>Privacy Policy</a>
+      <a href="/conditions-of-use">Conditions of Use</a>
+      <a href="/privacy-policy">Privacy Policy</a>
+      <a href="/site-map">Site map</a>
       <a href="https://github.com/RichardDorian/AtlasHardware" target="about:blank">GitHub</a>
     </div>
   </div>

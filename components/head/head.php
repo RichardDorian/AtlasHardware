@@ -6,10 +6,12 @@
   <link rel="stylesheet" href="/assets/styles/root.css">
   <?php include_once __DIR__ . "/meta.php" ?>
   <?php
-    if (isset($additional_styles)) {
-      foreach ($additional_styles as $style) {
+    if (isset($styles)) 
+      foreach ($styles as $style) 
         echo "<link rel=\"stylesheet\" href=\"/assets/styles/$style\">";
-      }
-    }
+    
+    if (isset($scripts))
+      foreach ($scripts as $script)
+        echo "<script src=\"/assets/scripts/$script\"></script>";
   ?>
 </head>

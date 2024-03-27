@@ -74,4 +74,5 @@ header > .with-icon {
 header > button#account {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }

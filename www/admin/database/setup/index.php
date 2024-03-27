@@ -21,4 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
   require_once __DIR__ . "/../../../../utils/database/setup.php";
   $status_code = setup_database();
+
+  exit();
 }

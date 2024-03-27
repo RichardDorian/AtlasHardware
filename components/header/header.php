@@ -1,4 +1,5 @@
 <header>
+  <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
   <a href="/">Home</a>
   <a href="/browse">Browse</a>
   <form action="/search" method="get" id="search">
@@ -8,11 +9,10 @@
     </button>
   </form>
   <?php
-    $connected = true;
-    if ($connected) {
-      include_once __DIR__ . "/loggedin.php";
-    } else {
-      include_once __DIR__ . "/loggedout.php";
-    }
+  if ($is_connected) {
+    include_once __DIR__ . "/loggedin.php";
+  } else {
+    include_once __DIR__ . "/loggedout.php";
+  }
   ?>
 </header>

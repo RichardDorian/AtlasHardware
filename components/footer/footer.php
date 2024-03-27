@@ -1,9 +1,9 @@
 <footer>
+  <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
   <?php
-    $connected = false;
-    if (!$connected) {
-      include_once __DIR__ . "/loggedout.php";
-    }
+  if (!$is_connected) {
+    include_once __DIR__ . "/loggedout.php";
+  }
   ?>
   <div id="links">
     <div>

@@ -57,8 +57,6 @@ class UserSession
   {
     $link = get_database_link();
     if (gettype($link) === "integer") return $link;
-    echo password_hash($password, PASSWORD_DEFAULT);
-    return 0;
 
     $id = UUID::generate_v4();
 

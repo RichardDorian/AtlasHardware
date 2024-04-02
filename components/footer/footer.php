@@ -1,5 +1,6 @@
+<?php include_once __DIR__ . "/../../utils/user_session.php" ?>
+
 <footer>
-  <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
   <?php
   if (!UserSession::is_connected()) {
     include_once __DIR__ . "/loggedout.php";

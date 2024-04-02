@@ -3,6 +3,7 @@
 <?php
 $styles = ["header.css", "footer.css"];
 $scripts = ["header.js"];
+$title = "Home";
 include_once __DIR__ . "/../components/head/head.php";
 ?>
 

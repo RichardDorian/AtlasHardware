@@ -48,3 +48,11 @@ input:-webkit-autofill,
 input:-webkit-autofill:focus {
   -webkit-text-fill-color: var(--color-text);
 }
+
+button {
+  cursor: pointer;
+}
+
+*:disabled {
+  cursor: not-allowed;
+}

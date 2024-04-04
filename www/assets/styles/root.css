@@ -14,6 +14,9 @@ html {
 
   --color-primary: #f5c518;
   --color-secondary: #797979;
+
+  --color-error: #f51818;
+  --color-warning: #f55d18;
 }
 
 body {
@@ -51,8 +54,4 @@ input:-webkit-autofill:focus {
 
 button {
   cursor: pointer;
-}
-
-*:disabled {
-  cursor: not-allowed;
 }

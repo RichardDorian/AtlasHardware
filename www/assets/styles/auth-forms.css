@@ -5,9 +5,73 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: calc(100vh - 75px - 257px - 50px * 2);
+
+  --box-width: 40%;
+  --element-width: 60%;
 }
 
-form {
+div#auth-select {
+  width: var(--box-width);
+  padding: 25px 50px 10px 50px;
+  border-radius: 15px 15px 0 0;
+  background-color: var(--color-background-hard);
+  display: flex;
+  justify-content: center;
+}
+
+div#auth-select > div.tabs {
+  width: calc(var(--element-width) - 10px * 2);
+}
+
+div#status {
+  width: var(--box-width);
+  padding: 0 50px;
+  background-color: var(--color-background-hard);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#status > span {
+  margin: 20px;
+  padding: 16px;
+  border: var(--color) 1px solid;
+  border-radius: 8px;
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+div#status > span.warning {
+  --color: var(--color-warning);
+}
+
+div#status > span.error {
+  --color: var(--color-error);
+}
+
+form.auth {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7.5px;
+
+  background-color: var(--color-background-hard);
+  padding: 10px 50px 50px 50px;
+  border-radius: 0 0 15px 15px;
+  width: var(--box-width);
+}
+
+form.auth > input {
+  background-color: var(--color-background-hard);
+  width: calc(var(--element-width) - 18px * 2);
+}
+
+form.auth > button {
+  margin-top: 15px;
+  width: var(--element-width);
 }

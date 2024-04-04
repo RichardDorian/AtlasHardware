@@ -1,0 +1,19 @@
+input.styled {
+  outline: none;
+  background-color: var(--color-background-hard);
+  color: white;
+  color: var(--color-text);
+  padding: 10px 18px;
+  border: 1px solid var(--color-background-light);
+  border-radius: 10px;
+
+  transition: border 0.15s;
+}
+
+input.styled::placeholder {
+  color: var(--color-text-hard);
+}
+
+input.styled:focus {
+  border: 1px solid var(--color-primary);
+}

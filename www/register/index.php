@@ -1,21 +1,40 @@
 <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
-<?php include_once __DIR__ . "/../../utils/error.php" ?>
 
 <?php
 $status = "";
+$color = "warning";
+
+function stringlength($string, $name, $min, $max)
+{
+  global $status;
+  if (strlen($string) < $min) {
+    $status = "The $name must be at least $min characters long";
+    return false;
+  }
+
+  if (strlen($string) > $max) {
+    $status = "The $name must be at most $max characters long";
+    return false;
+  }
+
+  return true;
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   if (
     !isset($_POST["username"]) ||
     !isset($_POST["password"]) ||
     !isset($_POST["password-repeat"])
-  )
+  ) {
     $status = "Invalid form body";
+    $color = "danger";
+  } else if (!stringlength($_POST["username"], "username", 4, 20));
+  else if (!stringlength($_POST["password"], "password", 8, 100));
 
-  else if ($_POST["password"] !== $_POST["password-repeat"])
+  else if ($_POST["password"] !== $_POST["password-repeat"]) {
     $status = "Passwords do not match";
-
-  else {
+    $color = "danger";
+  } else {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
@@ -26,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       4 => "This username is already taken, please choose another one.",
       default => "",
     };
+
+    if (in_array($result, [1, 2, 3, 4])) $color = "danger";
 
     if ($result === 0) {
       header("Location: /");
@@ -38,8 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$styles = ["header.css", "auth-forms.css", "footer.css"];
-$scripts = ["header.js"];
+$styles = ["header.css", "auth-forms.css", "tabs.css", "button.css", "input.css", "footer.css"];
+$scripts = ["header.js", "register.js"];
 $title = "Register";
 include_once __DIR__ . "/../../components/head/head.php";
 ?>
@@ -49,17 +70,22 @@ include_once __DIR__ . "/../../components/head/head.php";
 
   <main>
     <div id="auth-select">
-      <button>Login</button>
-      <button disabled>Register</button>
+      <div class="tabs">
+        <a href="/login">Login</a>
+        <a disabled class="active">Register</a>
+      </div>
     </div>
-
-    <?php echo $status ?>
-
-    <form action="/register" method="post">
-      <input type="text" name="username" placeholder="Username" autocomplete="username" required>
-      <input type="password" name="password" placeholder="Password" autocomplete="new-password" required>
-      <input type="password" name="password-repeat" placeholder="Repeat password" autocomplete="new-password" required>
-      <button type="submit">Register</button>
+    <div id="status">
+      <?php
+      if (strlen($status) > 0)
+        echo "<span class=\"$color\"><span class=\"material-symbols-rounded\">$color</span><span>$status</span></span>"
+      ?>
+    </div>
+    <form action="/register" method="post" class="auth">
+      <input class="styled" type="text" name="username" placeholder="Username" autocomplete="username" required minlength="4" maxlength="20">
+      <input class="styled" type="password" name="password" placeholder="Password" autocomplete="new-password" required minlength="8" maxlength="100">
+      <input class="styled" type="password" name="password-repeat" placeholder="Repeat password" autocomplete="new-password" required minlength="8" maxlength="100">
+      <button class="styled" type="submit">Register</button>
     </form>
   </main>
 

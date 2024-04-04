@@ -1,0 +1,16 @@
+button.styled {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 16px;
+}

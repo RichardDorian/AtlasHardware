@@ -1,4 +1,5 @@
 <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
+<?php include_once __DIR__ . "/../../utils/error.php" ?>
 
 <?php
 $status = "";
@@ -18,7 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    UserSession::register($username, $password);
+    $result = UserSession::register($username, $password);
+
+    $status = match ($result) {
+      1, 2, 3 => "Something went wrong while registering your account, please try again later.",
+      4 => "This username is already taken, please choose another one.",
+      default => "",
+    };
   }
 }
 ?>
@@ -51,7 +58,10 @@ include_once __DIR__ . "/../../components/head/head.php";
     </form>
   </main>
 
-  <?php include_once __DIR__ . "/../../components/footer/footer.php" ?>
+  <?php
+  $hide_register_footer = true;
+  include_once __DIR__ . "/../../components/footer/footer.php"
+  ?>
 </body>
 
 </html>

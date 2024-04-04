@@ -59,14 +59,20 @@ class UserSession
     if (gettype($link) === "integer") return $link;
 
     $id = UUID::generate_v4();
+    $idDec = hexdec($id);
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $link->prepare("INSERT INTO users (id, username, password, avatar) VALUES (?, ?, ?, null)");
-    $stmt->bind_param("iss", hexdec($id), $username, password_hash($password, PASSWORD_DEFAULT));
-    $stmt->execute();
+    $stmt->bind_param("iss", $idDec, $username, $hashed_password);
+    try {
+      $stmt->execute();
+    } catch (Exception $e) {
+      // Username already exists
+      if ($stmt->errno === 1062)
+        return 4;
 
-    // Username already exists
-    if ($stmt->errno === 1062)
       return 3;
+    };
 
     self::start_session($id);
     return 0;

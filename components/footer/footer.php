@@ -2,7 +2,7 @@
 
 <footer>
   <?php
-  if (!UserSession::is_connected()) {
+  if (!UserSession::is_connected() && !(isset($hide_register_footer) && $hide_register_footer)) {
     include_once __DIR__ . "/loggedout.php";
   }
   ?>

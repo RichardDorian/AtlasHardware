@@ -26,6 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       4 => "This username is already taken, please choose another one.",
       default => "",
     };
+
+    if ($result === 0) {
+      header("Location: /");
+      exit();
+    }
   }
 }
 ?>

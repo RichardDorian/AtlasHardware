@@ -40,6 +40,8 @@ For example, if you request `/test.php`, the server will return a `404` even if 
 
 We also enable text compression (using `mod_deflate`) to reduce the amount of data sent over the network.
 
+Moreover, we add a few redirections to make URLs more friendly. For exemple, we are redirecting `/assets/image/{IMAGE_ID}` to `/assets/images?id={IMAGE_ID}`. This way, we can have a more readable URL while avoiding using search params.
+
 ## Note on minification
 
 If you happen to run the server on a Linux machine, you can use [PageSpeed](https://www.modpagespeed.com/) which is a module made by Google that minifies the HTML, CSS and JavaScript files. It's a great tool to use, but it's not required. See the download page for Apache [here](https://www.modpagespeed.com/doc/download).

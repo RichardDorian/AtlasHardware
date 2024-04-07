@@ -1,0 +1,73 @@
+div.card {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+
+  background-color: #a3a3a30c;
+  border-radius: 20px;
+}
+
+div.card button.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 8px 18px;
+
+  border: none;
+  border-radius: 10px;
+
+  color: var(--color-text);
+  background-color: #a3a3a30c;
+}
+
+div.card.small {
+  width: 310px;
+  padding: 12px;
+}
+
+div.card.small > img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+div.card.small > h3 {
+  font-weight: normal;
+  font-size: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+div.card.small > div.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.card.small > div.details > div.numbers {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+div.card.small > div.details > div.numbers > span.material-symbols-rounded {
+  color: var(--color-primary);
+}
+
+div.card.small > div.details > div.numbers > span.text {
+  margin-right: 5px;
+}
+
+div.card.small > div.details > span.bookmark {
+  font-size: 28px;
+  cursor: pointer;
+}
+div.card.small > div.details > span.bookmark.added {
+  color: var(--color-primary);
+}

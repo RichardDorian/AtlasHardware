@@ -59,11 +59,10 @@ class UserSession
     if (gettype($link) === "integer") return $link;
 
     $id = UUID::generate_v4();
-    $idDec = hexdec($id);
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $link->prepare("INSERT INTO users (id, username, password, avatar) VALUES (?, ?, ?, null)");
-    $stmt->bind_param("iss", $idDec, $username, $hashed_password);
+    $stmt = $link->prepare("INSERT INTO users (id, username, password, avatar) VALUES (unhex(?), ?, ?, null)");
+    $stmt->bind_param("sss", $id, $username, $hashed_password);
     try {
       $stmt->execute();
     } catch (Exception $e) {

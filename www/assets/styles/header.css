@@ -83,6 +83,7 @@ header > div#my-account > button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-size: 16px;
 }
 
 header > div#my-account > div {

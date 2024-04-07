@@ -27,13 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     !isset($_POST["password-repeat"])
   ) {
     $status = "Invalid form body";
-    $color = "danger";
+    $color = "error";
   } else if (!stringlength($_POST["username"], "username", 4, 20));
   else if (!stringlength($_POST["password"], "password", 8, 100));
 
   else if ($_POST["password"] !== $_POST["password-repeat"]) {
     $status = "Passwords do not match";
-    $color = "danger";
+    $color = "error";
   } else {
     $username = $_POST["username"];
     $password = $_POST["password"];
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       default => "",
     };
 
-    if (in_array($result, [1, 2, 3, 4])) $color = "danger";
+    if (in_array($result, [1, 2, 3, 4])) $color = "error";
 
     if ($result === 0) {
       header("Location: /");

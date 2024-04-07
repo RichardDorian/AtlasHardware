@@ -56,7 +56,7 @@
     if (!lengthCheck(elements.password.value, 'Password', 8, 100)) return;
 
     if (elements.password.value !== elements.passwordRepeat.value) {
-      setStatus('warning', 'Passwords do not match');
+      setStatus('error', 'Passwords do not match');
       return;
     }
 

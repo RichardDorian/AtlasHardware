@@ -29,6 +29,14 @@ CREATE TABLE `atlashardware`.`posts` (
   FOREIGN KEY (`forked_from`) REFERENCES `posts`(`id`)
 ) ENGINE = InnoDB;
 
+CREATE TABLE `atlashardware`.`users_saved_builds` (
+  `user` BINARY(16) NOT NULL,
+  `post` BINARY(16) NOT NULL,
+  PRIMARY KEY (`user`, `post`),
+  FOREIGN KEY (`user`) REFERENCES `users`(`id`),
+  FOREIGN KEY (`post`) REFERENCES `posts`(`id`)
+) ENGINE = InnoDB;
+
 CREATE TABLE `atlashardware`.`comments` (
   `id` BINARY(16) NOT NULL,
   `author` BINARY(16) NOT NULL,

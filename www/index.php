@@ -52,11 +52,11 @@ include_once __DIR__ . "/../components/head/head.php";
     </section>
 
     <section>
-      <h1>Your Favorites</h1>
+      <h1>Saved Builds</h1>
       <div>
         <div class="section-header">
           <h2>Your Favorites</h2>
-          <p>We remembered them for you! Here are a selection of your favorite builds</p>
+          <p>We remembered them for you! Here are a selection of builds you saved</p>
         </div>
         <div class="section-content">
           <?php

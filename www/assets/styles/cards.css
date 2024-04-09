@@ -28,6 +28,7 @@ div.card.small {
 }
 
 div.card.small > img {
+  width: 310px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
@@ -70,4 +71,14 @@ div.card.small > div.details > span.bookmark {
 }
 div.card.small > div.details > span.bookmark.added {
   color: var(--color-primary);
+}
+
+@media screen and (min-width: 768px) {
+  div.card.small {
+    width: 240px;
+  }
+
+  div.card.small > img {
+    width: 240px;
+  }
 }

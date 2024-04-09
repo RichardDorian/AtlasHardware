@@ -1,5 +1,5 @@
 <div class="card small">
-  <img src="<?php echo $data["image"] ?>" width="310" draggable="false">
+  <img src="<?php echo $data["image"] ?>" draggable="false">
   <h3>
     <?php echo $data["title"] ?>
   </h3>

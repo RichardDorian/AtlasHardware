@@ -51,3 +51,9 @@ section > div > div.section-content {
   width: 100%;
   justify-content: center;
 }
+
+@media screen and (min-width: 768px) {
+  section > h1 {
+    font-size: 180px;
+  }
+}

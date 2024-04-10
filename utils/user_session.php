@@ -94,6 +94,24 @@ class UserSession
 
     return $saved_posts;
   }
+
+  public static function get_saved_posts()
+  {
+    $link = get_database_link();
+    if (gettype($link) === "integer") return [];
+
+    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM users_saved_posts INNER JOIN posts ON users_saved_posts.post = posts.id WHERE users_saved_posts.user = unhex(?) LIMIT 5");
+    $stmt->bind_param("s", $_SESSION["user_id"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $saved_posts = [];
+    while ($row = $result->fetch_assoc()) {
+      $saved_posts[] = PartialPost::from_sql_result($row);
+    }
+
+    return $saved_posts;
+  }
 }
 
 UserSession::restore_session();

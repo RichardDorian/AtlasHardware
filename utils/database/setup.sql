@@ -21,15 +21,18 @@ CREATE TABLE `atlashardware`.`users` (
 CREATE TABLE `atlashardware`.`posts` (
   `id` BINARY(16) NOT NULL,
   `author` BINARY(16) NOT NULL,
+  `cover` BINARY(16) NOT NULL,
   `date` DATETIME NOT NULL,
-  `forked_from` BINARY(16) NULL DEFAULT NULL,
+  `title` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
+  `rating` FLOAT NOT NULL DEFAULT 0,
+  `performance` SMALLINT NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author`) REFERENCES `users`(`id`),
-  FOREIGN KEY (`forked_from`) REFERENCES `posts`(`id`)
+  FOREIGN KEY (`cover`) REFERENCES `images`(`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `atlashardware`.`users_saved_builds` (
+CREATE TABLE `atlashardware`.`users_saved_posts` (
   `user` BINARY(16) NOT NULL,
   `post` BINARY(16) NOT NULL,
   PRIMARY KEY (`user`, `post`),

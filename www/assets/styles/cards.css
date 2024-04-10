@@ -7,7 +7,7 @@ div.card {
   border-radius: 20px;
 }
 
-div.card button.main {
+div.card a.main {
   display: flex;
   flex-direction: row;
   justify-content: center;

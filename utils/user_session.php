@@ -76,6 +76,24 @@ class UserSession
     self::start_session($id);
     return 0;
   }
+
+  public static function are_saved_posts(array $posts_ids): array
+  {
+    $link = get_database_link();
+    if (gettype($link) === "integer") return [];
+
+    $stmt = $link->prepare("SELECT hex(post) AS post FROM users_saved_posts WHERE user = unhex(?) AND post IN (unhex(?)" . str_repeat(", unhex(?)", count($posts_ids) - 1) . ")");
+    $stmt->bind_param("s" . str_repeat("s", count($posts_ids)), $_SESSION["user_id"], ...$posts_ids);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $saved_posts = [];
+    while ($row = $result->fetch_assoc()) {
+      $saved_posts[] = strtolower($row["post"]);
+    }
+
+    return $saved_posts;
+  }
 }
 
 UserSession::restore_session();

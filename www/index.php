@@ -12,7 +12,21 @@ include_once __DIR__ . "/../components/head/head.php";
 <body>
   <?php include_once __DIR__ . "/../components/header/header.php" ?>
   <main>
+    <?php
+    include_once __DIR__ . "/../utils/posts.php";
+    $latest_posts = Posts::get_latest_posts();
+    $best_perf = Posts::get_best_perf();
 
+    $saved_posts = [];
+
+    if (UserSession::is_connected()) {
+      $post_ids = [];
+      foreach ([...$latest_posts, ...$best_perf] as $post) {
+        if (!in_array($post->id, $post_ids)) $post_ids[] = $post->id;
+      }
+      $saved_posts = UserSession::are_saved_posts($post_ids);
+    }
+    ?>
     <section>
       <h1>Top Budget</h1>
       <div>
@@ -22,16 +36,11 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/0.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/1.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/4.webp", 8.9, 891, true, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/2.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/3.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
+
           ?>
         </div>
       </div>
     </section>
-
     <section>
       <h1>Latest Builds</h1>
       <div>
@@ -41,16 +50,13 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/2.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/4.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/0.webp", 8.9, 891, true, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/1.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/3.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
+          foreach ($latest_posts as $post) {
+            small_card($post, in_array($post->id, $saved_posts));
+          }
           ?>
         </div>
       </div>
     </section>
-
     <section>
       <h1>Saved Builds</h1>
       <div>
@@ -60,16 +66,11 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/3.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/1.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/4.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/2.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/0.webp", 8.9, 891, true, "9ee01e36a96547dc9141ff092085cd73");
+
           ?>
         </div>
       </div>
     </section>
-
     <section>
       <h1>Best Perf.</h1>
       <div>
@@ -79,16 +80,13 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/0.webp", 8.9, 891, true, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/1.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/2.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/3.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
-          small_card("R5 3600 • RTX 3090 • Black", "/assets/images/4.webp", 8.9, 891, false, "9ee01e36a96547dc9141ff092085cd73");
+          foreach ($best_perf as $post) {
+            small_card($post, in_array($post->id, $saved_posts));
+          }
           ?>
         </div>
       </div>
     </section>
-
   </main>
   <?php include_once __DIR__ . "/../components/footer/footer.php" ?>
 </body>

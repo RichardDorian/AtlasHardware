@@ -1,5 +1,9 @@
+<?php
+include_once __DIR__ . "/../../utils/user_session.php";
+?>
+
 <div class="card small">
-  <img src="<?php echo $data["image"] ?>" draggable="false">
+  <img src="<?php echo "/assets/image/" . $data["image"] ?>" draggable="false">
   <h3>
     <?php echo $data["title"] ?>
   </h3>
@@ -14,12 +18,20 @@
         <?php echo $data["benchmark"] ?>
       </span>
     </div>
-    <span class="material-symbols-rounded bookmark <?php echo $data["bookmarked"] ? "added" : "" ?>">
-      <?php echo $data["bookmarked"] ? "bookmark_added" : "bookmark" ?>
-    </span>
+    <?php
+    if (UserSession::is_connected()) {
+      $class = $data["saved"] ? "added" : "";
+      $icon = $data["saved"] ? "bookmark_added" : "bookmark";
+      echo <<<HTML
+      <span class="material-symbols-rounded bookmark $class">
+        $icon
+      </span>
+      HTML;
+    }
+    ?>
   </div>
-  <button class="main">
+  <a class="main" href="/post/<?php echo $data["id"] ?>">
     <span class="material-symbols-rounded">chevron_right</span>
     <span>Read post</span>
-  </button>
+  </a>
 </div>

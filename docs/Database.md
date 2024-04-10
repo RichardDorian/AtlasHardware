@@ -6,6 +6,16 @@ Here's a quick overview of the database system we use for the project.
 
 We use MySQL. Being what is promoted by the school we didn't have much of a choice. It's a good system, though.
 
+### MySQL configuration
+
+For testing purposes we put `.sql` files that we can import in the database. Those files are sometimes huges (due to image uploads). This can be a problem because by default the maximum packet size of MySQL is 1MB. We can change this to something more appropriate, like `16M` in order to fix potential errors.
+
+`my.ini`
+
+```ini
+max_allowed_packet=16M
+```
+
 ## Tables
 
 ### ERD (MCD)

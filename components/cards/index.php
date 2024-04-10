@@ -1,14 +1,14 @@
 <?php
 
-function small_card($title, $image, $rating, $benchmark, $bookmarked, $id)
+function small_card(PartialPost $post, bool $saved)
 {
   $data = [
-    "title" => $title,
-    "image" => $image,
-    "rating" => $rating,
-    "benchmark" => $benchmark,
-    "bookmarked" => $bookmarked,
-    "id" => $id
+    "id" => $post->id,
+    "image" => $post->cover,
+    "title" => $post->title,
+    "rating" => $post->rating,
+    "benchmark" => $post->performance,
+    "saved" => $saved,
   ];
   include __DIR__ . "/small.php";
 }

@@ -20,12 +20,11 @@ include_once __DIR__ . "/../../utils/user_session.php";
     </div>
     <?php
     if (UserSession::is_connected()) {
-      $class = $data["saved"] ? "added" : "";
+      $class = $data["saved"] ? " added" : "";
       $icon = $data["saved"] ? "bookmark_added" : "bookmark";
+      $id = $data["id"];
       echo <<<HTML
-      <span class="material-symbols-rounded bookmark $class">
-        $icon
-      </span>
+      <span class="material-symbols-rounded bookmark$class" data-save-unsave="$id">$icon</span>
       HTML;
     }
     ?>

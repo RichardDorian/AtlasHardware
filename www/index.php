@@ -4,7 +4,7 @@
 <html lang="en">
 <?php
 $styles = ["header.css", "home.css", "cards.css", "footer.css"];
-$scripts = ["header.js"];
+$scripts = ["header.js", "save-unsave.js"];
 $title = "Home";
 include_once __DIR__ . "/../components/head/head.php";
 ?>
@@ -69,6 +69,9 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
+          if (count($saved_builds) === 0) {
+            echo "<p>You haven't saved any build yet</p>";
+          }
           foreach ($saved_builds as $post) {
             small_card($post, true);
           }

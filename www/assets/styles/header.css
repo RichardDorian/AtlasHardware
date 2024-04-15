@@ -105,3 +105,25 @@ header > div#my-account > div {
 header > div#my-account > div.hidden {
   display: none;
 }
+
+@media screen and (max-width: 768px) {
+  header {
+    font-size: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 0;
+  }
+
+  header > form#search {
+    width: 100%;
+  }
+
+  a.with-icon {
+    padding: 0 20px;
+  }
+
+
+  
+}

@@ -11,18 +11,31 @@ main {
   --element-width: 60%;
 }
 
-div#auth-select {
-  width: var(--box-width);
-  padding: 25px 50px 10px 50px;
-  border-radius: 15px 15px 0 0;
+div#auth-parent {
   background-color: var(--color-background-hard);
+  /*background-color: coral;*/
+  border-radius: 15px;
+  padding: 20px 10vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
+div#auth-select {
+  /*width: var(--box-width);*/
+  /*padding: 25px 50px 10px 50px;*/
+  border-radius: 15px 15px 0 0;
+  /*background-color: var(--color-background-hard);*/
+  padding: 10px 0 20px 0;
+  display: flex;
+  justify-content: center;
+  width: var(--box-width);
+}
+/*
 div#auth-select > div.tabs {
   width: calc(var(--element-width) - 10px * 2);
-}
+}*/
 
 div#status {
   width: var(--box-width);
@@ -58,20 +71,24 @@ form.auth {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 7.5px;
 
-  background-color: var(--color-background-hard);
-  padding: 10px 50px 50px 50px;
+  /*background-color: var(--color-background-hard);*/
+  /*padding: 10px 50px 50px 50px;*/
   border-radius: 0 0 15px 15px;
-  width: var(--box-width);
+  /*width: var(--box-width);*/
 }
 
 form.auth > input {
   background-color: var(--color-background-hard);
-  width: calc(var(--element-width) - 18px * 2);
+  /*width: calc(var(--element-width) - 18px * 2);*/
+  width: 100%;
 }
 
 form.auth > button {
   margin-top: 15px;
   width: var(--element-width);
 }
+
+

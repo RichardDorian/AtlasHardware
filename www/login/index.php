@@ -44,23 +44,25 @@ include_once __DIR__ . "/../../components/head/head.php";
   <?php include_once __DIR__ . "/../../components/header/header.php" ?>
 
   <main>
-    <div id="auth-select">
-      <div class="tabs">
-        <a disabled class="active">Login</a>
-        <a href="/register">Register</a>
+    <div id="auth-parent">
+      <div id="auth-select">
+        <div class="tabs">
+          <a disabled class="active">Login</a>
+          <a href="/register">Register</a>
+        </div>
       </div>
+      <div id="status">
+        <?php
+        if (strlen($status) > 0)
+          echo "<span class=\"$color\"><span class=\"material-symbols-rounded\">$color</span><span>$status</span></span>"
+        ?>
+      </div>
+      <form action="/login" method="post" class="auth">
+        <input class="styled" type="text" name="username" placeholder="Username" autocomplete="username" required minlength="4" maxlength="20">
+        <input class="styled" type="password" name="password" placeholder="Password" autocomplete="current-password" required minlength="8" maxlength="100">
+        <button class="styled" type="submit">Login</button>
+      </form>
     </div>
-    <div id="status">
-      <?php
-      if (strlen($status) > 0)
-        echo "<span class=\"$color\"><span class=\"material-symbols-rounded\">$color</span><span>$status</span></span>"
-      ?>
-    </div>
-    <form action="/login" method="post" class="auth">
-      <input class="styled" type="text" name="username" placeholder="Username" autocomplete="username" required minlength="4" maxlength="20">
-      <input class="styled" type="password" name="password" placeholder="Password" autocomplete="current-password" required minlength="8" maxlength="100">
-      <button class="styled" type="submit">Login</button>
-    </form>
   </main>
 
   <?php

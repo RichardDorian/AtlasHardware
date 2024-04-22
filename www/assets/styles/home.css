@@ -1,13 +1,13 @@
 section {
   position: relative;
 
-  margin: 150px 0 180px 0;
+  margin: 8vmax 0 10vmax 0;
 }
 
 section > h1 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-weight: 1000;
-  font-size: 210px;
+  /*font-weight: 1000;*/
+  font-size: 12vw;
   text-align: center;
   color: #c3c3c319;
 
@@ -24,7 +24,12 @@ section > div {
   flex-direction: column;
   gap: 7px;
 
-  margin: 0 150px;
+  /*margin: 0 150px;*/
+  overflow: hidden;
+}
+
+section > div > div.section-header {
+  margin: 0 7vw;
 }
 
 section > div > div.section-header > h2::before {
@@ -49,11 +54,26 @@ section > div > div.section-content {
   flex-direction: row;
   gap: 15px;
   width: 100%;
-  justify-content: center;
+  /*justify-content: center;*/
+  overflow: scroll;
 }
 
-@media screen and (min-width: 768px) {
+section > div > div.section-content > p {
+  width: 100%;
+  text-align: center;
+}
+
+section > div > div.section-content >div:first-child {
+  margin-left: 7vw;
+}
+
+section > div > div.section-content >div:last-child {
+  margin-right: 7vw;
+}
+
+
+@media screen and (max-width: 1200px) {
   section > h1 {
-    font-size: 180px;
+    font-size: 0;
   }
 }

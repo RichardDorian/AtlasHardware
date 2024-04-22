@@ -38,7 +38,7 @@ div#auth-select > div.tabs {
 }*/
 
 div#status {
-  width: var(--box-width);
+  width: var(--element-width);
   padding: 0 50px;
   background-color: var(--color-background-hard);
   display: flex;
@@ -83,7 +83,7 @@ form.auth {
 form.auth > input {
   background-color: var(--color-background-hard);
   /*width: calc(var(--element-width) - 18px * 2);*/
-  width: 100%;
+  /*width: 100%;*/
 }
 
 form.auth > button {

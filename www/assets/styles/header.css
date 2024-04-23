@@ -20,7 +20,7 @@ header button {
 
 header > a,
 header > div > button {
-  padding: 12px 0;
+  padding: 0 12px;
 }
 
 header > form#search {
@@ -35,6 +35,8 @@ header > form#search {
   background-color: var(--color-background-light);
   padding: 12px 20px;
   border-radius: 10px;
+  
+
 }
 
 header > form#search > input {
@@ -93,35 +95,61 @@ header > div#my-account > div {
   gap: 10px;
 
   width: 100%;
-  top: 70px;
+  top: 60px;
+  right: 50px;
   left: 50%;
   transform: translateX(-50%);
   padding: 15px;
+  z-index: 2;
 
   background-color: var(--color-background-hard);
   border-radius: 10px;
+  box-shadow: -2px 2px 16px 0px #000000;
 }
 
 header > div#my-account > div.hidden {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   header {
-    font-size: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 0;
+    gap: 0 !important;
+  }
+
+  header span {
+    display: none;
+  
   }
 
   header > form#search {
-    width: 100%;
+    padding: 12px 10px;
   }
 
-  a.with-icon {
-    padding: 0 20px;
+  header > a,
+  header > div > button {
+    padding: 0 5px;
+  }
+
+
+
+  header form input {
+    width: 20px;
+  }
+
+
+  
+  header > div#my-account > div {
+    position: fixed;
+    width: 125px;
+    top: calc(75px + 10px);
+    right: 10px;
+
+    left: auto;
+    transform: translateX(0);
   }
 
 

@@ -12,7 +12,7 @@
   </a>
   
   <form action="/search" method="get" id="search">
-    <input type="text" name="query" id="query" placeholder="Search Atlas Hardware" required>
+    <input type="text" name="query" id="query" placeholder="Search ..." required>
     <button type="submit">
       <span class="material-symbols-rounded">search</span>
     </button>

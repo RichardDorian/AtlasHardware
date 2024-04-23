@@ -21,5 +21,9 @@
       hideMenu();
       myAccountEl.blur();
     });
+    // the account popup is positioned fixed, so it doesn't move with the page scroll, so we need to hide it when the user scrolls
+    // it's in fixed to be positioned relative viewport, in absolute the position will be relative to the first parent with a relative position
+    window.addEventListener('scroll', function() {hideMenu();});
   }
 }
+

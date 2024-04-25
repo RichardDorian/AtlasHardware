@@ -5,7 +5,7 @@ footer {
   justify-content: center;
   gap: 60px;
 
-  width: 100vw;
+  width: 100%;
   padding: 25px 0 35px 0;
 
   background-color: var(--color-background-hard);

@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   background-color: var(--color-background);
@@ -28,8 +28,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 ::-webkit-scrollbar {
-  width: 0;
+  width: 13px;
+  border-radius: 10px;
+  background-color: var(--color-background-light);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-hard);
+  border-radius: 10px;
+}
+
+
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4e4e4e;
 }
 
 a {

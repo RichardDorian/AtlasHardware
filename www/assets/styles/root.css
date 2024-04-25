@@ -52,13 +52,14 @@ a {
 }
 
 /* 
-Source: https://gist.github.com/vinaynb/bad0b45d96d5f122dc17
+Source: https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
 */
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
+  -webkit-background-clip: text;
   transition: background-color 5000s ease-in-out 0s;
 }
 

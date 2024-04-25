@@ -3,7 +3,7 @@ include_once __DIR__ . "/../../utils/user_session.php";
 ?>
 
 <div class="card small">
-  <img src="<?php echo "/assets/image/" . $data["image"] ?>" draggable="false">
+  <img src="<?php echo "/assets/image/" . $data["image"] ?>" draggable="false" alt="Image du PC contenant : <?php echo $data["title"] ?>">
   <h3>
     <?php echo $data["title"] ?>
   </h3>

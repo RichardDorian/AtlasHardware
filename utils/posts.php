@@ -64,13 +64,19 @@ class Posts
     return $posts;
   }
 
+  public static function get_number_of_posts()
+  {
+    $result = self::sql_query("SELECT COUNT(id) AS count FROM posts", "", []);
+    return $result->fetch_assoc()["count"];
+  }
+
   private static function sql_query(string $query, string $types, array $params)
   {
     $link = get_database_link();
     if (gettype($link) === "integer") return $link;
 
     $stmt = $link->prepare($query);
-    $stmt->bind_param($types, ...$params);
+    if ($types !== "") $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $result = $stmt->get_result();
 

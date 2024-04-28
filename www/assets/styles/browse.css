@@ -1,0 +1,11 @@
+div.content {
+    margin-top: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+    overflow: auto;
+  }

@@ -51,7 +51,7 @@ class Posts
 
   public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY performance DESC LIMIT ?", "ii", [$limit, $offset]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     $posts = [];

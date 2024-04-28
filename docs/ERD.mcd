@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                               %
+%                                  ASSOCIATION                                  %
+%                                                                               %
+%  Pour une association A entre plusieurs entités E1, E2, ..., écrivez sur une  %
+%  ligne « A, XX E1, XX E2, ... ».                                              %
+%                                                                               %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Reply, 01 Comments, 11 Comments: replied_to
+Wrote, 0N Users, 11 Comments
+Users: id, username, password
+Represented by, 01 Users, 11 Images
+:
+
+Comments: id, post, date, comment
+Saved, 0N Users, 0N Posts
+Posted, 0N Users, 11 Posts
+Contain, 11 Images, 11 Posts
+Images: id, image
+
+:
+Include, 0N Posts, 11 Comments
+Posts: id, cover, date, title, description, rating, performance
+Post images, 1N Images, 1N Posts
+:

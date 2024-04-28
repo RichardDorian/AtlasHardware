@@ -34,9 +34,9 @@ class PartialPost
 
 class Posts
 {
-  public static function get_latest_posts(int $limit = 5)
+  public static function get_latest_posts(int $limit = 5, int $offset = 0)
   {
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY date DESC LIMIT ?", "i", [$limit]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY date DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     $posts = [];
@@ -49,9 +49,9 @@ class Posts
     return $posts;
   }
 
-  public static function get_best_perf(int $limit = 5)
+  public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY performance DESC LIMIT ?", "i", [$limit]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY performance DESC LIMIT ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     $posts = [];

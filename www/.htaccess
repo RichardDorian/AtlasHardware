@@ -11,7 +11,7 @@ RewriteRule ^assets/image/([^/]+)$ /assets/images?id=$1 [QSA,L]
 
 ErrorDocument 404 /404.php
 
-SetEnv ADMIN_KEY abracadabra 
+SetEnv ADMIN_KEY CHANGE_THIS_TO_SOMETHING_UNIQUE 
 SetEnv DB_HOST localhost
 SetEnv DB_USER root
 # SetEnv DB_PASSWORD root

@@ -26,6 +26,13 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 

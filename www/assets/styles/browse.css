@@ -9,3 +9,38 @@ div.content {
     justify-content: center;
     overflow: auto;
   }
+
+div.pagination-container {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    display: flex;
+}
+
+div.pagination {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: var(--color-background-light);
+    border-radius: 18px;
+    overflow: hidden;
+    
+}
+
+a.page-link {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0 5px;
+    padding: 5px 10px;
+    width: 40px;
+    text-align: center;
+    color: var(--color-text);
+    border-radius: 90px;
+}
+
+a.current-page {
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+}
+

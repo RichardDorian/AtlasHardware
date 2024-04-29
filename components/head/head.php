@@ -2,6 +2,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?php echo isset($title) ? "$title • Atlas Hardware" : "Atlas Hardware" ?></title>
+  <link rel="icon" href="/assets/images/icon_atlas_hardware.png">
   <?php include_once __DIR__ . "/fonts.php" ?>
   <link rel="stylesheet" href="/assets/styles/root.css">
   <?php include_once __DIR__ . "/meta.php" ?>

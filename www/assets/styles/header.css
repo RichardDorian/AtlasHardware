@@ -95,7 +95,7 @@ header > div#my-account > div {
   gap: 10px;
 
   width: 100%;
-  top: 60px;
+  top: 50px;
   right: 50px;
   left: 50%;
   transform: translateX(-50%);
@@ -103,8 +103,8 @@ header > div#my-account > div {
   z-index: 2;
 
   background-color: var(--color-background-hard);
-  border-radius: 10px;
-  box-shadow: -2px 2px 16px 0px #000000;
+  border-radius: 0 0 10px 10px;
+  /*box-shadow: -1px 1px 16px 0px #000000;*/
 }
 
 header > div#my-account > div.hidden {
@@ -145,7 +145,7 @@ header > div#my-account > div.hidden {
   header > div#my-account > div {
     position: fixed;
     width: 125px;
-    top: calc(75px + 10px);
+    top: 75px;
     right: 10px;
 
     left: auto;

@@ -8,6 +8,7 @@ RewriteCond %{THE_REQUEST} \.php[\ /?].*HTTP/
 RewriteRule ^(.*)\.php$ - [R=404,L]
 
 RewriteRule ^assets/image/([^/]+)$ /assets/images?id=$1 [QSA,L]
+RewriteRule ^post/([^/]+)$ /view-post?id=$1 [QSA,L]
 
 ErrorDocument 404 /404.php
 

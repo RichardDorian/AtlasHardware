@@ -1,0 +1,36 @@
+div#scroll-indicator {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+
+  --indicator-position: 0%;
+}
+
+div#scroll-indicator > span {
+  display: inline-block;
+  width: 4px;
+  flex-grow: 1;
+  background-color: #a3a3a326;
+  border-radius: 100px;
+}
+
+div#scroll-indicator > span::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: var(--indicator-position);
+  width: 4px;
+  height: 40px;
+  background-color: var(--color-primary);
+  border-radius: 100px;
+}
+
+div#scroll-indicator > div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  margin: 10px 0;
+}

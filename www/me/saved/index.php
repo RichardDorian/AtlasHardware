@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php
-$styles = ["header.css", "cards.css", "saved.css", "footer.css"];
+$styles = ["header.css", "cards.css", "saved_search.css", "footer.css"];
 $scripts = ["header.js", "save-unsave.js"];
 $title = "Saved posts";
 include_once __DIR__ . "../../../../components/head/head.php";

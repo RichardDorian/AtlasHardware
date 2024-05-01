@@ -159,6 +159,108 @@ class Posts
     return $result->fetch_assoc()["count"];
   }
 
+
+  /**
+   * Search for posts that match the search query
+   * @param string $search The search query
+   * @return array An array containing the posts that match the search query
+   * @return string An error message if there are no results
+   */
+  public static function get_posts_from_search(string $search)
+  {
+    // Search for the exact component
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts WHERE title LIKE ?", "s", ["%$search%"]);
+    // Check if the query failed
+    if (gettype($result) === "integer") return $result;
+
+    // Fetch the results
+    $results = $result->fetch_all(MYSQLI_ASSOC);
+
+    $error_msg = "";
+
+    // If no results are found
+    if (count($results) === 0) {
+      // Retrieve all the posts
+      $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts", "", []);
+      // Check if the query failed
+      if (gettype($result) === "integer") return $result;
+
+      // Fetch the results
+      $results = $result->fetch_all(MYSQLI_ASSOC);
+
+      // Create an array to store the distance between the search and the title
+      $list = [];
+      foreach ($results as $res) {
+        // Levenshtein distance for the title of all the posts : https://www.scaler.com/topics/levenshtein-distance-python/
+
+        $n = strlen($res["title"]);
+        $m = strlen($search);
+
+        // Create a n*m matrix
+        $dp = array_fill(0, $n + 1, array_fill(0, $m + 1, 0));
+
+        // Base case when n = 0
+        for ($i = 0; $i <= $n; $i++) {
+          $dp[$i][0] = $i;
+        }
+
+        // Base case when m = 0
+        for ($i = 0; $i <= $m; $i++) {
+          $dp[0][$i] = $i;
+        }
+
+        // Transitions
+        for ($i = 1; $i <= $n; $i++) {
+          for ($j = 1; $j <= $m; $j++) {
+            $cost = ($res["title"][$i - 1] == $search[$j - 1]) ? 0 : 1;
+            $dp[$i][$j] = min(
+                $dp[$i - 1][$j] + 1,
+                $dp[$i][$j - 1] + 1,
+                $dp[$i - 1][$j - 1] + $cost
+            );
+
+          }
+        }
+
+        // Store the distance and the post
+        $list[] = [$dp[$n][$m], $res];
+
+      }
+
+      // Create an array with the distance
+      $keys = array_column($list, 0);
+
+      // Sort $list based on the distance
+      array_multisort($keys, SORT_ASC, $list);
+
+      // Slice the sorted array
+      $sliced_array = array_slice($list, 0, 3);
+
+      // If the first element has a distance greater than 15 we consider that there is no match
+      if ($sliced_array[0][0] > 15) {
+        $error_msg = "No posts match the specified search terms : Here are some results that could match";
+      }
+
+      // If the first element has a distance greater than 30 we consider that it's useless to display the results
+      if ($sliced_array[0][0] > 30) {
+        $error_msg = "No posts match the specified search terms";
+        $sliced_array = [];
+      }
+
+      // Create an array with the results
+      $results = array_column($sliced_array, 1);
+    }
+
+    // Format the results
+    $posts = [];
+    foreach ($results as $res) {
+        $posts[] = PartialPost::from_sql_result($res);
+    }
+
+
+    return array("posts" => $posts, "error_msg" => $error_msg);
+  }
+
   private static function sql_query(string $query, string $types, array $params)
   {
     $link = get_database_link();

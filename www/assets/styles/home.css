@@ -72,17 +72,6 @@ main section > div > div.section-content {
 main section > div > div.section-content::-webkit-scrollbar {
   height: 7px;
   background-color: transparent;
-  border-radius: 10px;
-}
-
-main section > div > div.section-content::-webkit-scrollbar-thumb {
-  background-color: var(--color-text-hard);
-  border-radius: 10px;
-}
-
-main section > div > div.section-content::-webkit-scrollbar-track {
-  background-color: var(--color-background-light);
-  border-radius: 10px;
 }
 
 /* There is now way to shrink the lenght of the scrollbar in css it takes the size of the div, this is why we must innovate
@@ -111,6 +100,10 @@ main section > div > div.section-content > p {
 /* The first and last post of the section must have a margin to make the scroll effect look better */
 main section > div > div.section-content > div:first-child {
   margin-left: 7vw;
+}
+
+main section > div > div.section-content > div:last-child {
+  margin-right: 7vw;
 }
 
 /* Responsive design */

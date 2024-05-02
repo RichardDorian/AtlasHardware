@@ -71,12 +71,29 @@ HTML;
             ?>
           </div>
         </div>
-        <div id="images">
+        <div id="images_and_scrollindicator">
+          <div id="images">
+            <?php
+            foreach ($post->images as $image) {
+              echo "<img src=\"{$post->get_image_url($image)}\" draggable=\"false\">";
+              echo "<img src=\"{$post->get_image_url($image)}\" draggable=\"false\">";
+            }
+            ?>
+          </div>
+          <div>
           <?php
-          foreach ($post->images as $image) {
-            echo "<img src=\"{$post->get_image_url($image)}\" draggable=\"false\">";
-          }
-          ?>
+          $data = [
+            "links" => [
+              ["overview", "Overview", true],
+              ["images", "Images"],
+              ["description", "Description"],
+              ["performance", "Performance"],
+              ["technical-specs", "Technical specs"],
+              ["comments", "Comments"],
+            ]
+          ];
+          include_once __DIR__ . "/../../components/post/scroll-indicatator.php";
+          ?></div>
         </div>
         <div id="description">
           <p><?php echo $post->description ?></p>
@@ -91,49 +108,53 @@ HTML;
                 <span class="material-symbols-rounded">memory</span>
                 <h3>CPU</h3>
               </span>
-              <p><?php echo $post->specs["cpu"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["cpu"] ?>" target="_blank"><?php echo $post->specs["cpu"] ?></a>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">monitor</span>
                 <h3>GPU</h3>
               </span>
-              <p><?php echo $post->specs["gpu"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["gpu"] ?>" target="_blank"><?php echo $post->specs["gpu"] ?></a>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">developer_board</span>
                 <h3>Motherboard</h3>
               </span>
-              <p><?php echo $post->specs["motherboard"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["motherboard"] ?>" target="_blank"><?php echo $post->specs["motherboard"] ?></a>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">bolt</span>
                 <h3>PSU</h3>
               </span>
-              <p><?php echo $post->specs["psu"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["psu"] ?>" target="_blank"><?php echo $post->specs["psu"] ?></a>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">memory_alt</span>
                 <h3>RAM</h3>
               </span>
-              <p><?php echo $post->specs["ram"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["ram"] ?>" target="_blank"><?php echo $post->specs["ram"] ?></a>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">database</span>
                 <h3>Storage</h3>
               </span>
-              <p><?php echo join("<br />", $post->specs["storage"]) ?></p>
+              <?php
+              foreach ($post->specs["storage"] as $storage) {
+                echo "<a href=\"https://google.com/search?q=$storage\" target=\"_blank\">$storage</a>";
+              }
+              ?>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">package_2</span>
                 <h3>Case</h3>
               </span>
-              <p><?php echo $post->specs["case"] ?></p>
+              <a href="https://google.com/search?q=<?php echo $post->specs["case"] ?>" target="_blank"><?php echo $post->specs["case"] ?></a>
             </div>
           </div>
         </div>
@@ -149,10 +170,10 @@ HTML;
         </div>
         <div id="comments-list">
 
-        </div>
+        </div><!--
         <h2 id="more-builds">More builds</h2>
         <div id="more-builds-content">
-          <?php
+          <?php /*
           include_once __DIR__ . "/../../utils/posts.php";
           include_once __DIR__ . "/../../components/cards/index.php";
           $saved_posts_in_others = [];
@@ -169,13 +190,13 @@ HTML;
 
           foreach ($latest_posts as $post) {
             small_card($post, in_array($post->id, $saved_posts_in_others));
-          }
+          }*/
           ?>
-        </div>
+        </div>-->
       </div>
       <div>
         <?php
-        $data = [
+        /*$data = [
           "links" => [
             ["overview", "Overview", true],
             ["images", "Images"],
@@ -186,7 +207,7 @@ HTML;
             ["more-builds", "More builds"]
           ]
         ];
-        include_once __DIR__ . "/../../components/post/scroll-indicatator.php";
+        include_once __DIR__ . "/../../components/post/scroll-indicatator.php";*/
         $data = ["text" => "Share", "icon" => "share"];
         // include __DIR__ . "/../../components/button.php";
         ?>

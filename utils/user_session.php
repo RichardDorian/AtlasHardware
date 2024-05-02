@@ -77,6 +77,12 @@ class UserSession
     return 0;
   }
 
+  public static function is_saved_post($post_id): bool
+  {
+    $arr = self::are_saved_posts([$post_id]);
+    return count($arr) === 1;
+  }
+
   public static function are_saved_posts(array $posts_ids): array
   {
     $link = get_database_link();

@@ -1,7 +1,5 @@
 main {
-  height: 1000px;
   position: relative;
-  overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -12,7 +10,7 @@ main > div#background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 70vh;
   background: linear-gradient(#00000000, var(--color-background)),
     var(--background-url);
@@ -27,7 +25,7 @@ main > div#background {
 
 main > div#content {
   width: 80%;
-  margin-top: 40px;
+  margin: 40px 0;
 
   display: flex;
   flex-direction: row;
@@ -40,11 +38,14 @@ main > div#content > div:nth-child(2) {
 }
 
 div#main {
-  flex-grow: 1;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 div#main > h1 {
-  margin-bottom: 16px;
+  margin-bottom: -10px;
 }
 
 div#post-details {
@@ -54,8 +55,17 @@ div#post-details {
   justify-content: space-between;
 }
 
+div#details-action {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 div#images {
-  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  border-radius: 10px;
 }
 
 div#images > img {
@@ -65,7 +75,60 @@ div#images > img {
 
 div#description {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+h2 {
+  scroll-margin-top: 50px;
+}
+
+h2::before {
+  font-size: small;
+  content: '•  ';
+  color: var(--color-primary);
+  font-size: 1em;
+}
+
+div#technical-specs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+div#components-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+}
+
+div#components-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+div#components-grid > div > span {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+div#comments-title {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 150px;
+  align-items: center;
+}
+
+div#more-builds-content {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  overflow-x: auto;
 }

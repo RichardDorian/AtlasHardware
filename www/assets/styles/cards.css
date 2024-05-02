@@ -2,28 +2,28 @@
 
 /* Card */
 div.card {
-    display: flex;
-    flex-direction: column;
-    gap: 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
 
-    background-color: #a3a3a30c;
-    border-radius: 20px;
+  background-color: #a3a3a30c;
+  border-radius: 20px;
 }
 
 /* Link to open the post */
 div.card a.main {
-    padding: 8px 18px;
+  padding: 8px 18px;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-    border: none;
-    border-radius: 10px;
+  border: none;
+  border-radius: 10px;
 
-    color: var(--color-text);
-    background-color: #a3a3a30c;
+  color: var(--color-text);
+  background-color: #a3a3a30c;
 }
 
 /* Originally, we had planned to have cards in two different sizes, 'small' and 'big', 
@@ -31,62 +31,62 @@ div.card a.main {
 
 /* Small card */
 div.card.small {
-    width: 15vw;
-    min-width: 150px;
-    padding: 12px;
+  width: 15vw;
+  min-width: 150px;
+  padding: 12px;
 }
 
 /* Image of the post */
 div.card.small > img {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* Title of the post */
 div.card.small > h3 {
-    font-weight: normal;
-    font-size: 20px;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  font-weight: normal;
+  font-size: 20px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 /* Details of the post (rating, benchmark) */
 div.card.small > div.details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Details child */
 div.card.small > div.details > div.numbers {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
 }
 
 /* Icons */
 div.card.small > div.details > div.numbers > span.material-symbols-rounded {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 /* Text */
 div.card.small > div.details > div.numbers > span.text {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 /* Bookmark icon */
 div.card.small > div.details > span.bookmark {
-    font-size: 28px;
-    cursor: pointer;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 /* Bookmark icon when the post is bookmarked */
-div.card.small > div.details > span.bookmark.added {
-    color: var(--color-primary);
+div.card.small > div.details > span.bookmark.saved {
+  color: var(--color-primary);
 }

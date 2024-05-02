@@ -59,13 +59,15 @@ class Post extends PartialPost
   public string $author;
   public string $date;
   public string $description;
+  public array $specs;
 
-  public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description)
+  public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs)
   {
     parent::__construct($id, $cover, $title, $rating, $performance);
     $this->author = $author;
     $this->date = $date;
     $this->description = $description;
+    $this->specs = json_decode($raw_specs, true);
   }
 
   public static function from_sql_result($result)
@@ -78,7 +80,51 @@ class Post extends PartialPost
       $result["performance"],
       strtolower($result["author"]),
       $result["date"],
-      $result["description"]
+      $result["description"],
+      $result["specs"]
+    );
+  }
+}
+
+class PartialUser
+{
+  public string $id;
+  public string $username;
+}
+
+class Comment
+{
+  public string $id;
+  public string $post;
+  public string $content;
+  public string $reply_to;
+  public string $author;
+  public string $date;
+
+  public function __construct(string $id, string $post, string $content, string $reply_to, string $author, string $date)
+  {
+    $this->id = $id;
+    $this->post = $post;
+    $this->content = $content;
+    $this->reply_to = $reply_to;
+    $this->author = $author;
+    $this->date = $date;
+  }
+
+  public function get_author(): PartialUser
+  {
+    return new PartialUser();
+  }
+
+  public static function from_sql_result($result)
+  {
+    return new Comment(
+      $result["id"],
+      $result["post"],
+      $result["content"],
+      $result["reply_to"],
+      $result["author"],
+      $result["date"]
     );
   }
 }
@@ -102,7 +148,7 @@ class Posts
 
   public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance, specs FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     $posts = [];
@@ -117,7 +163,7 @@ class Posts
 
   public static function get_post(string $id)
   {
-    $result = self::sql_query("SELECT hex(author) AS author, hex(cover) AS cover, date, title, description, rating, performance FROM posts WHERE id = unhex(?)", "s", [$id]);
+    $result = self::sql_query("SELECT hex(author) AS author, hex(cover) AS cover, date, title, description, rating, performance, specs FROM posts WHERE id = unhex(?)", "s", [$id]);
     if (gettype($result) === "integer") return $result;
 
     $res = $result->fetch_assoc();

@@ -20,7 +20,7 @@ include_once __DIR__ . "/../../utils/user_session.php";
     </div>
     <?php
     if (UserSession::is_connected()) {
-      $class = $data["saved"] ? " added" : "";
+      $class = $data["saved"] ? " saved" : "";
       $icon = $data["saved"] ? "bookmark_added" : "bookmark";
       $id = $data["id"];
       echo <<<HTML

@@ -4,7 +4,7 @@
   for (const element of saveUnsaveElements) {
     element.addEventListener('click', async () => {
       const id = element.dataset.saveUnsave;
-      const saved = element.classList.contains('added');
+      const saved = element.classList.contains('saved');
       const route = saved ? '/me/unsave' : '/me/save';
 
       await fetch(route, {

@@ -25,6 +25,7 @@ div#scroll-indicator > span::after {
   height: 40px;
   background-color: var(--color-primary);
   border-radius: 100px;
+  transition: top 0.15s;
 }
 
 div#scroll-indicator > div {
@@ -33,4 +34,12 @@ div#scroll-indicator > div {
   gap: 20px;
 
   margin: 10px 0;
+}
+
+div#scroll-indicator > div > a {
+  color: var(--color-text);
+}
+
+div#scroll-indicator > div > a.selected {
+  color: var(--color-primary);
 }

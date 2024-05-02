@@ -27,6 +27,7 @@ CREATE TABLE `atlashardware`.`posts` (
   `description` TEXT NOT NULL,
   `rating` FLOAT NOT NULL DEFAULT 0,
   `performance` SMALLINT NOT NULL,
+  `specs` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author`) REFERENCES `users`(`id`),
   FOREIGN KEY (`cover`) REFERENCES `images`(`id`)
@@ -56,7 +57,9 @@ CREATE TABLE `atlashardware`.`comments` (
 CREATE TABLE `atlashardware`.`post_images` (
   `post` BINARY(16) NOT NULL,
   `image` BINARY(16) NOT NULL,
+  `position` SMALLINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`post`, `image`),
+  PRIMARY KEY (`position`),
   FOREIGN KEY (`post`) REFERENCES `posts`(`id`),
   FOREIGN KEY (`image`) REFERENCES `images`(`id`)
 ) ENGINE = InnoDB;

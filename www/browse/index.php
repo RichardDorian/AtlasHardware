@@ -12,6 +12,10 @@
   <body>
     <?php include_once __DIR__ . "/../../components/header/header.php" ?>
     <main>
+    <h1>
+    <span class="material-symbols-rounded">travel_explore</span>
+      <span>Browse</span>
+    </h1>
       <?php
       include_once __DIR__ . "/../../utils/posts.php";
       $_GET["page"] = $_GET["page"] ?? 1;

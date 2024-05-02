@@ -81,7 +81,6 @@ HTML;
             <?php
             foreach ($post->images as $image) {
               echo "<img src=\"{$post->get_image_url($image)}\" draggable=\"false\">";
-              echo "<img src=\"{$post->get_image_url($image)}\" draggable=\"false\">";
             }
             ?>
           </div>

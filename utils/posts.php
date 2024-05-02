@@ -261,6 +261,63 @@ class Posts
     return array("posts" => $posts, "error_msg" => $error_msg);
   }
 
+  public static function get_number_of_posts_each_month()
+  {
+    $res = self::sql_query("SELECT YEAR(date) AS annee, MONTH(date) AS mois, COUNT(id) AS nb_posts FROM posts GROUP BY annee, mois ORDER BY annee ASC, mois ASC;", "", []);
+    if (gettype($res) === "integer") return $res;
+    $res = $res->fetch_all(MYSQLI_ASSOC);
+
+    $result = array();
+
+    // Initialiser les tableaux pour chaque année avec des valeurs 0
+    foreach ($res as $item) {
+      $annee = $item["annee"];
+      if (!isset($result[$annee])) {
+        $result[$annee] = array_fill(1, 12, "0");
+      }
+    }
+
+    $month_array = array(
+      1 => "Janvier",
+      2 => "Février",
+      3 => "Mars",
+      4 => "Avril",
+      5 => "Mai",
+      6 => "Juin",
+      7 => "Juillet",
+      8 => "Août",
+      9 => "Septembre",
+      10 => "Octobre",
+      11 => "Novembre",
+      12 => "Décembre"
+    );
+
+    // Remplir les données réelles
+    foreach ($res as $item) {
+      $annee = $item["annee"];
+      $mois = $item["mois"];
+      $nb_posts = $item["nb_posts"];
+      $result[$annee][$mois] = $nb_posts;
+    }
+
+    $month_array = array(
+      1 => "Janvier",
+      2 => "Février",
+      3 => "Mars",
+      4 => "Avril",
+      5 => "Mai",
+      6 => "Juin",
+      7 => "Juillet",
+      8 => "Août",
+      9 => "Septembre",
+      10 => "Octobre",
+      11 => "Novembre",
+      12 => "Décembre"
+    );
+
+    return ["result" => $result, "month_array" => $month_array];
+  }
+
   private static function sql_query(string $query, string $types, array $params)
   {
     $link = get_database_link();

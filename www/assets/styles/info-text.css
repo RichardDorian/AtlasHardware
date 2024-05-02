@@ -1,38 +1,38 @@
 main {
-  padding: 50px 10vw;
+    padding: 50px 10vw;
 }
 
 main h1 {
-  font-size: 3em;
-  color: var(--color-text);
-  text-align: center;
-  padding: 15px 0 30px 0;
+    font-size: 3em;
+    color: var(--color-text);
+    text-align: center;
+    padding: 15px 0 30px 0;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 main h1 > span.material-symbols-rounded {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 main p {
-  margin: 30px 0;
-  text-align: justify;
+    margin: 30px 0;
+    text-align: justify;
 }
 
 main ul {
-  margin: 30px 0 30px 2vw;
+    margin: 30px 0 30px 2vw;
 }
 
 main li {
-  margin: 10px 0;
+    margin: 10px 0;
 }
 
 main a {
-  color: var(--color-text);
-  text-decoration: underline;
+    color: var(--color-text);
+    text-decoration: underline;
 }

@@ -12,6 +12,7 @@
       <a href="/browse">Browse</a>
       <a href="/register">Register</a>
       <a href="/login">Login</a>
+      <a href="/stats">Stats</a>
     </div>
     <div>
       <a href="/conditions-of-use">Conditions of Use</a>

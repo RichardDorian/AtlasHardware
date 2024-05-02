@@ -45,7 +45,12 @@ HTML;
               echo "On {$date->format("F j Y")} by";
               ?>
             </span>
-            <a><?php echo $post->get_author_name() ?></a>
+            <a>
+              <?php
+              $post->fetch_author();
+              echo $post->author->username;
+              ?>
+            </a>
           </p>
           <div id="details-action">
             <?php

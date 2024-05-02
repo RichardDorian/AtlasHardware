@@ -1,93 +1,94 @@
+/* Style for auth forms */
+
+/* Main container */
 main {
-  margin: 50px 0;
+    margin: 50px 0;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 75px - 257px - 50px * 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  --box-width: 40%;
-  --element-width: 60%;
+    --box-width: 40%;
+    --element-width: 60%;
 }
 
-div#auth-parent {
-  background-color: var(--color-background-hard);
-  /*background-color: coral;*/
-  border-radius: 15px;
-  padding: 20px 5vw;
-  margin: 0 5vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  gap: 20px;
+/* Auth parent */
+main div#auth-parent {
+    padding: 20px 5vw;
+    margin: 0 5vw;
+
+    background-color: var(--color-background-hard);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    gap: 20px;
 }
 
-div#auth-select {
-  /*width: var(--box-width);*/
-  /*padding: 25px 50px 10px 50px;*/
-  border-radius: 15px 15px 0 0;
-  /*background-color: var(--color-background-hard);*/
-  display: flex;
-  justify-content: center;
-}
-/*
-div#auth-select > div.tabs {
-  width: calc(var(--element-width) - 10px * 2);
-}*/
+/* Parent of the auth switcher (login/register) */
+main div#auth-select {
+    border-radius: 15px 15px 0 0;
 
-div#status {
-  /*padding: 0 50px;*/
-  background-color: var(--color-background-hard);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
-div#status > span {
-  padding: 16px;
-  border: var(--color) 1px solid;
-  border-radius: 8px;
-  color: var(--color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+/* Parent of error block */
+main div#status {
+    background-color: var(--color-background-hard);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-div#status > span.warning {
-  --color: var(--color-warning);
+/* Error block */
+main div#status > span {
+    padding: 16px;
+    border: var(--color) 1px solid;
+    border-radius: 8px;
+    color: var(--color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-div#status > span.error {
-  --color: var(--color-error);
+/* On a warning */
+main div#status > span.warning {
+    --color: var(--color-warning);
 }
 
-form.auth {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: fit-content;
-  gap: 7.5px;
-
-  /*background-color: var(--color-background-hard);*/
-  /*padding: 10px 50px 50px 50px;*/
-  border-radius: 0 0 15px 15px;
-  /*width: var(--box-width);*/
+/* On an error */
+main div#status > span.error {
+    --color: var(--color-error);
 }
 
-form.auth > input {
-  background-color: var(--color-background-hard);
-  /*width: calc(var(--element-width) - 18px * 2);*/
-  /*width: 100%;*/
+/* Auth form */
+main form.auth {
+    border-radius: 0 0 15px 15px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    gap: 7.5px;
 }
 
-form.auth > button {
-  margin-top: 15px;
-  width: var(--element-width);
+/* Auth form input */
+main form.auth > input {
+    background-color: var(--color-background-hard);
 }
 
-
+/* Auth form button */
+main form.auth > button {
+    margin-top: 15px;
+    width: var(--element-width);
+}

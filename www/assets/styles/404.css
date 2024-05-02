@@ -1,21 +1,23 @@
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
+/* Style for 404 page */
 
-  padding: 50px 0 100px 0;
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+
+    padding: 50px 0 100px 0;
 }
 
 main > * {
-  padding: 0 5vw;
+    padding: 0 5vw;
 }
 
 h1 {
-  font-size: 200px;
+    font-size: 200px !important;
 }
 
 h2 {
-  font-size: xx-large;
+    font-size: xx-large;
 }

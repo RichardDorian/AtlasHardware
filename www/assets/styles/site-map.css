@@ -1,21 +1,24 @@
+/* Style for site-map page */
+
+/* Main container */
 main {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 main h2 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 
 main div {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 main a {
-  margin-right: 10px;
+    margin-right: 10px;
 }

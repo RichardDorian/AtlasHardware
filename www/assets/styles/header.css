@@ -1,157 +1,167 @@
+/* Styles for the header of the website */
+
+
 header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-
-  width: 100%;
-  padding: 14px 0;
-
-  background-color: var(--color-background-hard);
-
-  font-size: 16px;
-}
-
-header a,
-header button {
-  color: var(--color-text);
-}
-
-header > a,
-header > div > button {
-  padding: 0 12px;
-}
-
-header > form#search {
-  width: 25vw;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-
-  background-color: var(--color-background-light);
-  padding: 12px 20px;
-  border-radius: 10px;
-  
-
-}
-
-header > form#search > input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-
-  height: 24px;
-
-  font-size: 14px;
-  color: var(--color-text);
-
-  flex-grow: 1;
-}
-
-header > form#search > input::placeholder {
-  color: var(--color-text-hard);
-}
-
-header > form#search > button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-header > form#search > button > span.material-symbols-rounded {
-  color: var(--color-text-hard);
-}
-
-header .with-icon {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 5px;
-}
-
-header > div#my-account {
-  position: relative;
-}
-
-header > div#my-account > button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-header > div#my-account > div {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-
-  width: 100%;
-  top: 50px;
-  right: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 15px;
-  z-index: 2;
-
-  background-color: var(--color-background-hard);
-  border-radius: 0 0 10px 10px;
-  /*box-shadow: -1px 1px 16px 0px #000000;*/
-}
-
-header > div#my-account > div.hidden {
-  display: none;
-}
-
-@media screen and (max-width: 1000px) {
-  header {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
-    gap: 0 !important;
-  }
+    justify-content: center;
+    gap: 28px;
 
-  header span {
+    width: 100%;
+    padding: 14px 0;
+
+    background-color: var(--color-background-hard);
+
+    font-size: 16px;
+}
+
+/* Links and buttons */
+header a,
+header button {
+    color: var(--color-text);
+}
+
+/* Direct links and buttons */
+header > a,
+header > div > button {
+    padding: 0 12px;
+}
+
+/* Search form */
+header > form#search {
+    width: 25vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    background-color: var(--color-background-light);
+    padding: 12px 20px;
+    border-radius: 10px;
+}
+
+/* Search input */
+header > form#search > input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    height: 24px;
+
+    font-size: 14px;
+    color: var(--color-text);
+
+    flex-grow: 1;
+}
+
+/* Search input placeholder */
+header > form#search > input::placeholder {
+    color: var(--color-text-hard);
+}
+
+/* Search button */
+header > form#search > button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-hard);
+}
+
+/* All links with icons */
+header .with-icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+/* My account div */
+header > div#my-account {
+    position: relative;
+}
+
+/* My account button */
+header > div#my-account > button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* My account dropdown */
+header > div#my-account > div {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    width: 100%;
+    top: 50px;
+    right: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    z-index: 2;
+
+    background-color: var(--color-background-hard);
+    border-radius: 0 0 10px 10px;
+}
+
+/* When the dropdown menu is hidden */
+header>div#my-account>div.hidden {
     display: none;
-  
-  }
+}
 
-  header > form#search {
-    padding: 12px 10px;
-  }
+/* Responsive design 
+There are lines that normally do nothing, but which we have to override.*/
+@media screen and (max-width: 1000px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 0 !important;
+    }
 
-  header > a,
-  header > div > button {
-    padding: 0 5px;
-  }
+    /* Hide the icons */
+    header span {
+        display: none;
+    }
 
+    /* Reduce the size of the search bar */
+    header > form#search {
+        padding: 12px 10px;
+    }
 
+    /* Reduce the size of the links */
+    header > a,
+    header > div > button {
+        padding: 0 5px;
+    }
 
-  header form input {
-    width: 20px;
-  }
+    /* Reduce the size of the search input */
+    header form input {
+        width: 20px;
+    }
 
+    /* The dropdown menu is normally below the 'my account' button, centered in the middle, but on smaller devices, 
+    it must be stuck to the right of the page, otherwise the dropdown would protrude out of the viewport. 
+    The only way to do this is to set it to 'fixed', the 'absolute' position is based on the nearest relative parent, 
+    so it can't be used since it also protrudes out of the viewport. This is remedied with a line of js */
+    header > div#my-account > div {
+        position: fixed;
+        width: 125px;
+        top: 75px;
+        right: 10px;
 
-  
-  header > div#my-account > div {
-    position: fixed;
-    width: 125px;
-    top: 75px;
-    right: 10px;
-
-    left: auto;
-    transform: translateX(0);
-  }
-
-
-  
+        left: auto;
+        transform: translateX(0);
+    }
 }

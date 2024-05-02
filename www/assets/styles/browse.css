@@ -1,46 +1,56 @@
-div.content {
+/* Style for the browse page */
+
+/* Main container */
+main div.content {
     margin-top: 20px;
     padding-bottom: 10px;
+
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
+
     gap: 15px;
     width: 100%;
-    justify-content: center;
     overflow: auto;
-  }
-
-div.pagination-container {
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    display: flex;
 }
 
-div.pagination {
-    align-items: center;
-    display: inline-flex;
+/* Pagination container */
+main div.pagination-container {
+    display: flex;
     justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+/* Pagination */
+div.pagination {
     margin-top: 20px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
     background-color: var(--color-background-light);
     border-radius: 18px;
     overflow: hidden;
-    
 }
 
-a.page-link {
-    font-size: 18px;
-    font-weight: 400;
+
+main a.page-link {
     margin: 0 5px;
     padding: 5px 10px;
+
+    font-size: 18px;
+    font-weight: 400;
     width: 40px;
     text-align: center;
     color: var(--color-text);
     border-radius: 90px;
 }
 
-a.current-page {
+main a.current-page {
     background-color: var(--color-primary);
     color: var(--color-text-primary);
 }
-

@@ -1,45 +1,56 @@
+/* Style for footer */
+
+/* Footer */
 footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 60px;
+    padding: 25px 0 35px 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
 
-  width: 100%;
-  padding: 25px 0 35px 0;
+    width: 100%;
 
-  background-color: var(--color-background-hard);
+    background-color: var(--color-background-hard);
 }
 
+/* Button to register */
 footer > a {
-  margin: 15px 10vw 0 10vw;
-  color: var(--color-text-primary);
-  font-size: 16px;
+    margin: 15px 10vw 0 10vw;
+    padding: 10px 18px;
 
-  background-color: var(--color-primary);
-  border-radius: 10px;
-  padding: 10px 18px;
+    color: var(--color-text-primary);
+    font-size: 16px;
+
+    background-color: var(--color-primary);
+    border-radius: 10px;
 }
 
+/* Parent of links div */
 footer > div#links {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 140px;
-  margin: 0 5vw;
+    margin: 0 5vw;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 140px;
 }
 
+/* Links div own 2 children */
 footer > div#links > div {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+/* Links */
 footer > div#links > div > a {
-  color: var(--color-text);
+    color: var(--color-text);
 }
 
+/* Copyright */
 footer > span#copyright {
-  font-size: 14px;
-  color: var(--color-secondary);
+    font-size: 14px;
+    color: var(--color-secondary);
 }

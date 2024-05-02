@@ -1,22 +1,8 @@
+/* Style for stats page */
+
+/* Main container */
 main {
     padding: 50px 10vw;
-}
-
-main h1 {
-    font-size: 3em;
-    color: var(--color-text);
-    text-align: center;
-    padding: 15px 0 30px 0;
-  
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-main h1 > span.material-symbols-rounded {
-    font-size: 1em;
 }
 
 main p {
@@ -24,7 +10,8 @@ main p {
     text-align: center;
 }
 
-main > div {
+/* Parent of the table */
+main>div {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -32,10 +19,12 @@ main > div {
     gap: 10px;
 }
 
+/* Table */
 main table {
     border-collapse: collapse;
 }
 
+/* Style of th cells, we use the :not(:first-child) selector to avoid styling the first cell */
 main th:not(:first-child) {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -43,6 +32,7 @@ main th:not(:first-child) {
     border: 1px solid var(--color-secondary);
 }
 
+/* Style of td cells */
 main td {
     background-color: var(--color-background);
     color: var(--color-text);
@@ -50,6 +40,7 @@ main td {
     border: 1px solid var(--color-secondary);
 }
 
+/* Only the numbers in the table should be centered */
 main td:not(:first-child) {
     text-align: center;
 }

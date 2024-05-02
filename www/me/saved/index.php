@@ -19,17 +19,21 @@ include_once __DIR__ . "../../../../components/head/head.php";
     }
     ?>
     <h1>
-    <span class="material-symbols-rounded">bookmark</span>
+      <span class="material-symbols-rounded">bookmark</span>
       <span>Saved Builds</span>
     </h1>
     <div>
       <div class="section-content">
         <?php
-        if (count($saved_builds) === 0) {
-          echo "<p>You haven't saved any build yet</p>";
-        }
-        foreach ($saved_builds as $post) {
-          small_card($post, true);
+        if (!UserSession::is_connected()) {
+          echo "<p>You need to be logged in to see your saved builds</p>";
+        } else {
+          if (count($saved_builds) === 0) {
+            echo "<p>You haven't saved any build yet</p>";
+          }
+          foreach ($saved_builds as $post) {
+            small_card($post, true);
+          }
         }
         ?>
       </div>

@@ -13,7 +13,7 @@ For testing purposes we put `.sql` files that we can import in the database. Tho
 `my.ini`
 
 ```ini
-max_allowed_packet=16M
+max_allowed_packet=500M
 ```
 
 ## Tables

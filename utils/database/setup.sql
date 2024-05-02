@@ -27,6 +27,7 @@ CREATE TABLE `atlashardware`.`posts` (
   `description` TEXT NOT NULL,
   `rating` FLOAT NOT NULL DEFAULT 0,
   `performance` SMALLINT NOT NULL,
+  `specs` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author`) REFERENCES `users`(`id`),
   FOREIGN KEY (`cover`) REFERENCES `images`(`id`)

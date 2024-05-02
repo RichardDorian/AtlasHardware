@@ -58,8 +58,7 @@ CREATE TABLE `atlashardware`.`post_images` (
   `post` BINARY(16) NOT NULL,
   `image` BINARY(16) NOT NULL,
   `position` SMALLINT NOT NULL DEFAULT 0,
-  PRIMARY KEY (`post`, `image`),
-  PRIMARY KEY (`position`),
+  PRIMARY KEY (`post`, `image`, `position`),
   FOREIGN KEY (`post`) REFERENCES `posts`(`id`),
   FOREIGN KEY (`image`) REFERENCES `images`(`id`)
 ) ENGINE = InnoDB;

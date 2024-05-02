@@ -130,7 +130,7 @@ class Posts
 
   public static function get_images_for_post(string $id)
   {
-    $result = self::sql_query("SELECT hex(images.id) AS id FROM posts INNER JOIN post_images ON posts.id = post_images.post INNER JOIN images ON post_images.image = images.id WHERE posts.id = unhex(?);", "s", [$id]);
+    $result = self::sql_query("SELECT hex(images.id) AS id FROM posts INNER JOIN post_images ON posts.id = post_images.post INNER JOIN images ON post_images.image = images.id WHERE posts.id = unhex(?) ORDER BY post_images.position;", "s", [$id]);
     if (gettype($result) === "integer") return $result;
 
     $images = [];
@@ -214,17 +214,15 @@ class Posts
           for ($j = 1; $j <= $m; $j++) {
             $cost = ($res["title"][$i - 1] == $search[$j - 1]) ? 0 : 1;
             $dp[$i][$j] = min(
-                $dp[$i - 1][$j] + 1,
-                $dp[$i][$j - 1] + 1,
-                $dp[$i - 1][$j - 1] + $cost
+              $dp[$i - 1][$j] + 1,
+              $dp[$i][$j - 1] + 1,
+              $dp[$i - 1][$j - 1] + $cost
             );
-
           }
         }
 
         // Store the distance and the post
         $list[] = [$dp[$n][$m], $res];
-
       }
 
       // Create an array with the distance
@@ -254,7 +252,7 @@ class Posts
     // Format the results
     $posts = [];
     foreach ($results as $res) {
-        $posts[] = PartialPost::from_sql_result($res);
+      $posts[] = PartialPost::from_sql_result($res);
     }
 
 

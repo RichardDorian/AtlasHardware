@@ -1,7 +1,8 @@
 <?php
 
 include_once __DIR__ . "/database/index.php";
-include_once __DIR__ . "/uuid.php";
+include_once __DIR__ . "/database/table.php";
+include_once __DIR__ . "/user.php";
 
 class PartialPost
 {
@@ -32,11 +33,6 @@ class PartialPost
     return $this->get_image_url($this->cover);
   }
 
-  public function get_author_name()
-  {
-    return Posts::get_post_author_name($this->id);
-  }
-
   public function get_image_url(string $id)
   {
     return "/assets/image/" . $id;
@@ -56,18 +52,24 @@ class PartialPost
 
 class Post extends PartialPost
 {
-  public string $author;
+  public string $author_id;
   public string $date;
   public string $description;
   public array $specs;
+  public ?User $author;
 
   public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs)
   {
     parent::__construct($id, $cover, $title, $rating, $performance);
-    $this->author = $author;
+    $this->author_id = $author;
     $this->date = $date;
     $this->description = $description;
     $this->specs = json_decode($raw_specs, true);
+  }
+
+  public function fetch_author()
+  {
+    $this->author = Users::get_user_by_id($this->author_id);
   }
 
   public static function from_sql_result($result)
@@ -86,50 +88,7 @@ class Post extends PartialPost
   }
 }
 
-class PartialUser
-{
-  public string $id;
-  public string $username;
-}
-
-class Comment
-{
-  public string $id;
-  public string $post;
-  public string $content;
-  public string $reply_to;
-  public string $author;
-  public string $date;
-
-  public function __construct(string $id, string $post, string $content, string $reply_to, string $author, string $date)
-  {
-    $this->id = $id;
-    $this->post = $post;
-    $this->content = $content;
-    $this->reply_to = $reply_to;
-    $this->author = $author;
-    $this->date = $date;
-  }
-
-  public function get_author(): PartialUser
-  {
-    return new PartialUser();
-  }
-
-  public static function from_sql_result($result)
-  {
-    return new Comment(
-      $result["id"],
-      $result["post"],
-      $result["content"],
-      $result["reply_to"],
-      $result["author"],
-      $result["date"]
-    );
-  }
-}
-
-class Posts
+class Posts extends TableRelation
 {
   public static function get_latest_posts(int $limit = 5, int $offset = 0)
   {
@@ -186,17 +145,6 @@ class Posts
     }
 
     return $images;
-  }
-
-  public static function get_post_author_name(string $id)
-  {
-    $result = self::sql_query("SELECT users.username AS username FROM users INNER JOIN posts ON users.id = posts.author WHERE posts.id = unhex(?)", "s", [$id]);
-    if (gettype($result) === "integer") return $result;
-
-    $res = $result->fetch_assoc();
-    if (!is_array($res)) return 4;
-
-    return $res["username"];
   }
 
   public static function get_number_of_posts()
@@ -362,19 +310,11 @@ class Posts
     return ["result" => $result, "month_array" => $month_array];
   }
 
-  private static function sql_query(string $query, string $types, array $params)
+  public static function get_post_author($post_id)
   {
-    $link = get_database_link();
-    if (gettype($link) === "integer") return $link;
-
-    $stmt = $link->prepare($query);
-    if ($types !== "") $stmt->bind_param($types, ...$params);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result === false)
-      return 3;
-
-    return $result;
+    $res = self::sql_query("SELECT hex(author) AS author FROM posts WHERE id = unhex(?)", "s", [$post_id]);
+    if (gettype($res) === "integer") return $res;
+    $res = $res->fetch_assoc();
+    return $res["author"];
   }
 }

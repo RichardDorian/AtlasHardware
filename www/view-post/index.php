@@ -228,6 +228,7 @@ HTML;
         <div id="comments-title">
           <h2 id="comments">Comments</h2>
           <?php
+          if (UserSession::is_connected()) {
           // Data for the button to write a comment
           $data = [
             "text" => "Write comment",
@@ -237,6 +238,7 @@ HTML;
             ]
           ];
           include __DIR__ . "/../../components/button.php";
+        }
           ?>
         </div>
 

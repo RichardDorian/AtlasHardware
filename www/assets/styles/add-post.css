@@ -1,8 +1,12 @@
+/* Styles for the add post page */
+
+/* Main container */
 main {
     padding: 50px 0;
     margin: 0 7vw;
 }
 
+/* Image container */
 #image-container {
     display: flex;
     flex-wrap: wrap;
@@ -14,6 +18,7 @@ main {
     width: 100%;
 }
 
+/* Button to add image */
 div#image-container > div#button_to_add_img {
     display: flex;
     flex-direction: row;
@@ -27,6 +32,7 @@ div#image-container > div#button_to_add_img > span {
     font-size: 5em;
 }
 
+/* Image preview */
 .image-preview {
     width: 150px;
     height: 150px;
@@ -48,7 +54,7 @@ div#image-container > div#button_to_add_img > span {
     display: none;
 }
 
-.image-preview-close-button>span {
+.image-preview-close-button > span {
     background-color: var(--color-background-light);
     color: var(--color-text);
     font-size: 2em;
@@ -56,8 +62,7 @@ div#image-container > div#button_to_add_img > span {
     text-align: center;
 }
 
-
-
+/* Form */
 main form {
     display: flex;
     flex-direction: column;
@@ -77,6 +82,7 @@ main form > div {
 
 }
 
+/* Component grid */
 div#components-grid {
     display: flex;
     flex-direction: row;
@@ -86,7 +92,7 @@ div#components-grid {
     flex-wrap: wrap;
 }
 
-div#components-grid>div {
+div#components-grid > div {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -99,7 +105,7 @@ div#components-grid>div {
     min-height: 120px;
 }
 
-div#components-grid>div>span {
+div#components-grid > div > span {
     display: flex;
     flex-direction: row;
     gap: 10px;
@@ -107,17 +113,16 @@ div#components-grid>div>span {
     align-items: center;
 }
 
+/* Responsive design */
 @media screen and (max-width: 1000px) {
     #image-container {
         flex-direction: column !important;
     }
-    
-}
 
-@media screen and (max-width: 1000px) {
     div#post-details p {
         overflow-wrap: break-word;
     }
+
     div#details-action {
         flex-direction: column;
     }
@@ -134,5 +139,4 @@ div#components-grid>div>span {
         max-height: none;
         min-width: initial;
     }
-    
 }

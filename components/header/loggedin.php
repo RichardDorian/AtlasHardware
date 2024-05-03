@@ -13,7 +13,6 @@
     <span>My account</span>
   </button>
   <div class="hidden">
-    <a href="/me">My account</a>
     <a href="/me/posts">My posts</a>
     <hr />
     <?php echo "<a href=\"/logout?redirect=" . urlencode($_SERVER["REQUEST_URI"]) . "\">Logout</a>" ?>

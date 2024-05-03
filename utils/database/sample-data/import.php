@@ -20,6 +20,8 @@ function import_sample_data(): void
     __DIR__ . "/users.sql",
     __DIR__ . "/images.sql",
     __DIR__ . "/posts.sql",
+    __DIR__ . "/post_images.sql",
+    __DIR__ . "/comments.sql",
   ];
 
   foreach ($data_files as $file_path) {

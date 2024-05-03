@@ -1,211 +1,25 @@
-INSERT INTO
-  `atlashardware`.`posts` (
-    id,
-    author,
-    cover,
-    title,
-    date,
-    description,
-    rating,
-    performance,
-    specs,
-    starting_price
-  )
-VALUES
-  (
-    0xd38a9ad84bc14ca5b628759c98c47347,
-    0x76b6254b6746435cb5f77fb7216e0d80,
-    0x5e51e717193d4d878ceb7a9a3bca500f,
-    'R5 3600 RTX 3090',
-    '2024-01-02 15:12:54',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.',
-    9.8,
-    981,
-    '{"cpu":"Ryzen 5 3600","gpu":"Asus RTX 3090","motherboard":"MSI B450 Tomahawk Max","ram":"Corsair LPX 16 GB DDR4-3200","psu":"Corsair RM750x","storage":["Curcial P1 1TB NVMe SSD","Seagate Barracuda 2TB HDD"],"case":"Fractal Design Meshify C"}',
-    2000
-  );
 
-INSERT INTO
-  `atlashardware`.`post_images` (post, image, position)
-VALUES
-  (
-    0xd38a9ad84bc14ca5b628759c98c47347,
-    0x5e51e717193d4d878ceb7a9a3bca500f,
-    0
-  );
+CREATE TABLE IF NOT EXISTS `posts` (
+  `id` binary(16) NOT NULL,
+  `author` binary(16) NOT NULL,
+  `cover` binary(16) NOT NULL,
+  `date` datetime NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `rating` float NOT NULL DEFAULT '0',
+  `performance` smallint NOT NULL,
+  `specs` varchar(500) NOT NULL,
+  `starting_price` float NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `author` (`author`),
+  KEY `cover` (`cover`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO
-  `atlashardware`.`posts` (
-    id,
-    author,
-    cover,
-    title,
-    date,
-    description,
-    rating,
-    performance,
-    specs,
-    starting_price
-  )
-VALUES
-  (
-    0xd51b9d95e6e6476cb5c9f86ff1e02770,
-    0x76b6254b6746435cb5f77fb7216e0d80,
-    0x0518ff737b084358ae4ffa043f0d1688,
-    'i5 7600k RTX 4090 SUPER',
-    '2024-01-03 16:24:00',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.',
-    4.5,
-    542,
-    '{"cpu":"Intel i5 7600k","gpu":"PNY RTX 4090 SUPER","motherboard":"MSI B450 Tomahawk Max","ram":"Corsair LPX 32 GB DDR5-6400","psu":"Corsair RM750x","storage":["Curcial P1 1TB NVMe SSD","Seagate Barracuda 2TB HDD"],"case":"Fractal Design Meshify C"}',
-    1500
-  );
-
-INSERT INTO
-  `atlashardware`.`post_images` (post, image, position)
-VALUES
-  (
-    0xd51b9d95e6e6476cb5c9f86ff1e02770,
-    0x0518ff737b084358ae4ffa043f0d1688,
-    0
-  );
-
-INSERT INTO
-  `atlashardware`.`users_saved_posts` (user, post)
-VALUES
-  (
-    0x76b6254b6746435cb5f77fb7216e0d80,
-    0xd51b9d95e6e6476cb5c9f86ff1e02770
-  );
-
-INSERT INTO
-  `atlashardware`.`posts` (
-    id,
-    author,
-    cover,
-    title,
-    date,
-    description,
-    rating,
-    performance,
-    specs,
-    starting_price
-  )
-VALUES
-  (
-    0x69fc1a864c2143e180ffe1f8387423aa,
-    0x9a8d8a56afbb4072bb9a925ed3b62770,
-    0x5a6e68b8750d45629cb5c57a67049395,
-    'R7 5800x RTX 4070 Ti',
-    '2023-12-31 01:39:52',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.',
-    6.9,
-    999,
-    '{"cpu":"R7 5800x","gpu":"PNY RTX 4070 Ti","motherboard":"MSI B450 Tomahawk Max","ram":"Corsair LPX 32 GB DDR5-6400","psu":"Corsair RM750x","storage":["Curcial P1 1TB NVMe SSD","Seagate Barracuda 2TB HDD"],"case":"Fractal Design Meshify C"}',
-    999.99
-  );
-
-INSERT INTO
-  `atlashardware`.`post_images` (post, image, position)
-VALUES
-  (
-    0x69fc1a864c2143e180ffe1f8387423aa,
-    0x5a6e68b8750d45629cb5c57a67049395,
-    0
-  );
-
-INSERT INTO
-  `atlashardware`.`users_saved_posts` (user, post)
-VALUES
-  (
-    0x9a8d8a56afbb4072bb9a925ed3b62770,
-    0x69fc1a864c2143e180ffe1f8387423aa
-  );
-
-INSERT INTO
-  `atlashardware`.`posts` (
-    id,
-    author,
-    cover,
-    title,
-    date,
-    description,
-    rating,
-    performance,
-    specs,
-    starting_price
-  )
-VALUES
-  (
-    0x67e4738aff204740a28d2412077dcf51,
-    0x76b6254b6746435cb5f77fb7216e0d80,
-    0xec82c9be01b8423681a9a3c25d59403b,
-    'R5 3600 GTX 1660 SUPER',
-    '2024-02-01 14:37:19',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.',
-    1.2,
-    687,
-    '{"cpu":"Ryzen 5 3600","gpu":"Gigabyte GTX 1660 SUPER","motherboard":"MSI B450 Mortar Max","ram":"Corsair LPX Vengeance 16 GB DDR4-3200","psu":"Seasonic S12III 500W 80+ Bronze","storage":["Curcial 256GB 2.5 SSD","Seagate Barracuda 2TB HDD"],"case":"Cooler Master MasterBox Q300L"}',
-    850.99
-  );
-
-INSERT INTO
-  `atlashardware`.`post_images` (post, image, position)
-VALUES
-  (
-    0x67e4738aff204740a28d2412077dcf51,
-    0xec82c9be01b8423681a9a3c25d59403b,
-    0
-  );
-
-INSERT INTO
-  `atlashardware`.`users_saved_posts` (user, post)
-VALUES
-  (
-    0x76b6254b6746435cb5f77fb7216e0d80,
-    0x67e4738aff204740a28d2412077dcf51
-  );
-
-INSERT INTO
-  `atlashardware`.`users_saved_posts` (user, post)
-VALUES
-  (
-    0x9a8d8a56afbb4072bb9a925ed3b62770,
-    0x67e4738aff204740a28d2412077dcf51
-  );
-
-INSERT INTO
-  `atlashardware`.`posts` (
-    id,
-    author,
-    cover,
-    title,
-    date,
-    description,
-    rating,
-    performance,
-    specs,
-    starting_price
-  )
-VALUES
-  (
-    0x191b22968fa7427684277b8dd105a798,
-    0x9a8d8a56afbb4072bb9a925ed3b62770,
-    0x8f8472a7a9504a8daaf4487a34f3a8a2,
-    'i7 11700k RTX 3060 Ti',
-    '2024-04-10 18:08:53',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.',
-    8.4,
-    752,
-    '{"cpu":"i7 11700k","gpu":"RTX 3060 Ti","motherboard":"MSI Z590-A PRO ATX LGA1200","ram":"Corsair Vengeance LPX 16GB (2 x 8GB) DDR4-3200 CL16 Memory","psu":"Corsair RMx (2018) 650 W 80+ Gold Certified Fully Modular ATX Power Supply","storage":["Samsung 970 Evo 1 TB M.2-2280 NVME Solid State Drive","Seagate Barracuda Compute 2 TB 3.5 7200RPM Internal Hard Drive"],"case":"NZXT H510 ATX Mid Tower Case"}',
-    1238.56
-  );
-
-INSERT INTO
-  `atlashardware`.`post_images` (post, image, position)
-VALUES
-  (
-    0x191b22968fa7427684277b8dd105a798,
-    0x8f8472a7a9504a8daaf4487a34f3a8a2,
-    0
-  );
+INSERT INTO `posts` (`id`, `author`, `cover`, `date`, `title`, `description`, `rating`, `performance`, `specs`, `starting_price`) VALUES
+(0x191b22968fa7427684277b8dd105a798, 0x9a8d8a56afbb4072bb9a925ed3b62770, 0x8f8472a7a9504a8daaf4487a34f3a8a2, '2024-04-10 18:08:53', 'i7 11700k RTX 3060 Ti', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.', 8.4, 752, '{\"cpu\":\"i7 11700k\",\"gpu\":\"RTX 3060 Ti\",\"motherboard\":\"MSI Z590-A PRO ATX LGA1200\",\"ram\":\"Corsair Vengeance LPX 16GB (2 x 8GB) DDR4-3200 CL16 Memory\",\"psu\":\"Corsair RMx (2018) 650 W 80+ Gold Certified Fully Modular ATX Power Supply\",\"storage\":[\"Samsung 970 Evo 1 TB M.2-2280 NVME Solid State Drive\",\"Seagate Barracuda Compute 2 TB 3.5 7200RPM Internal Hard Drive\"],\"case\":\"NZXT H510 ATX Mid Tower Case\"}', 1238.56),
+(0x312cd9e3b5da4eb0bc4ad181cfa2e8fd, 0x77987f2e507e4544b8b5b78c7c648466, 0x9d3eda6045834dfdb56471df7c7819f6, '2024-05-03 15:25:06', 'R9 5900X RTX 3080', 'Check out this beast of a PC build designed for ultimate gaming performance and aesthetics. From the powerful CPU and GPU combo to the sleek case and efficient cooling, this rig is ready to handle any game you throw at it with ease.', 1.3, 950, '{\"cpu\":\"AMD Ryzen 9 5900X\",\"gpu\":\"NVIDIA GeForce RTX 3080\",\"motherboard\":\"ASUS ROG Strix X570-E Gaming\",\"ram\":\"G.Skill Trident Z RGB 32GB (2 x 16GB) DDR4 3600MHz\",\"psu\":\"Corsair RM850x 850W 80+ Gold\",\"storage\":[\"Samsung 970 EVO Plus 1TB NVMe SSD\",\"Seagate Barracuda 4TB HDD\"],\"case\":\"NZXT H710i\"}', 2500),
+(0x608e7ae3776e4545b16c0afdb8517992, 0x77987f2e507e4544b8b5b78c7c648466, 0xe8d0c7ba89064e6bab6a290d9bed098a, '2024-05-03 15:31:00', 'i9-12900K RTX 3090', 'Elevate your productivity to new heights with this high-performance workstation PC build, optimized for demanding tasks such as video editing, 3D rendering, and graphic design. Featuring top-of-the-line components and reliable performance, this rig is a powerhouse for professionals and enthusiasts alike.', 0.6, 920, '{\"cpu\":\"Intel Core i9-12900K\",\"gpu\":\"NVIDIA GeForce RTX 3090\",\"motherboard\":\"ASUS ProArt Z690-CREATOR WIFI\",\"ram\":\"Corsair Dominator Platinum RGB 64GB (4 x 16GB) DDR5 5600MHz\",\"psu\":\"Seasonic Prime TX-1000 1000W 80+ Titanium\",\"storage\":[\"Samsung 980 PRO 2TB NVMe SSD\",\"WD Black 8TB HDD\"],\"case\":\"Fractal Design Define 7 XL\"}', 3000),
+(0x67e4738aff204740a28d2412077dcf51, 0x76b6254b6746435cb5f77fb7216e0d80, 0xec82c9be01b8423681a9a3c25d59403b, '2024-02-01 14:37:19', 'R5 3600 GTX 1660 SUPER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.', 1.2, 687, '{\"cpu\":\"Ryzen 5 3600\",\"gpu\":\"Gigabyte GTX 1660 SUPER\",\"motherboard\":\"MSI B450 Mortar Max\",\"ram\":\"Corsair LPX Vengeance 16 GB DDR4-3200\",\"psu\":\"Seasonic S12III 500W 80+ Bronze\",\"storage\":[\"Curcial 256GB 2.5 SSD\",\"Seagate Barracuda 2TB HDD\"],\"case\":\"Cooler Master MasterBox Q300L\"}', 850.99),
+(0x69fc1a864c2143e180ffe1f8387423aa, 0x9a8d8a56afbb4072bb9a925ed3b62770, 0x5a6e68b8750d45629cb5c57a67049395, '2023-12-31 01:39:52', 'R7 5800x RTX 4070 Ti', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.', 6.9, 999, '{\"cpu\":\"R7 5800x\",\"gpu\":\"PNY RTX 4070 Ti\",\"motherboard\":\"MSI B450 Tomahawk Max\",\"ram\":\"Corsair LPX 32 GB DDR5-6400\",\"psu\":\"Corsair RM750x\",\"storage\":[\"Curcial P1 1TB NVMe SSD\",\"Seagate Barracuda 2TB HDD\"],\"case\":\"Fractal Design Meshify C\"}', 999.99),
+(0xd38a9ad84bc14ca5b628759c98c47347, 0x76b6254b6746435cb5f77fb7216e0d80, 0x5e51e717193d4d878ceb7a9a3bca500f, '2024-01-02 15:12:54', 'R5 3600 RTX 3090', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.', 9.8, 981, '{\"cpu\":\"Ryzen 5 3600\",\"gpu\":\"Asus RTX 3090\",\"motherboard\":\"MSI B450 Tomahawk Max\",\"ram\":\"Corsair LPX 16 GB DDR4-3200\",\"psu\":\"Corsair RM750x\",\"storage\":[\"Curcial P1 1TB NVMe SSD\",\"Seagate Barracuda 2TB HDD\"],\"case\":\"Fractal Design Meshify C\"}', 2000),
+(0xd51b9d95e6e6476cb5c9f86ff1e02770, 0x76b6254b6746435cb5f77fb7216e0d80, 0x0518ff737b084358ae4ffa043f0d1688, '2024-01-03 16:24:00', 'i5 7600k RTX 4090 SUPER', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vel quam convallis, tristique nulla eu, maximus eros. Vestibulum sed vestibulum risus, sit amet bibendum nisi. Morbi consectetur nisi odio, at convallis lectus auctor at. Nulla ultricies placerat massa, sed dapibus elit. Curabitur aliquam nisl nibh, et facilisis metus blandit nec. Vestibulum laoreet, mauris eu condimentum viverra, leo libero placerat elit, cursus rhoncus ante risus a nisl. Nam varius consequat arcu in maximus. Quisque facilisis ut sem non ornare. Vivamus faucibus, ipsum eget eleifend consequat, leo ipsum convallis elit, at scelerisque est urna quis dolor. Vestibulum laoreet dictum turpis sed egestas. Mauris tempus dui ut est pharetra pharetra. Sed vestibulum consectetur dolor, a eleifend est hendrerit eu.', 4.5, 542, '{\"cpu\":\"Intel i5 7600k\",\"gpu\":\"PNY RTX 4090 SUPER\",\"motherboard\":\"MSI B450 Tomahawk Max\",\"ram\":\"Corsair LPX 32 GB DDR5-6400\",\"psu\":\"Corsair RM750x\",\"storage\":[\"Curcial P1 1TB NVMe SSD\",\"Seagate Barracuda 2TB HDD\"],\"case\":\"Fractal Design Meshify C\"}', 1500);

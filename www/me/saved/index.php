@@ -14,7 +14,10 @@ include_once __DIR__ . "../../../../components/head/head.php";
   <main>
     <?php
     include_once __DIR__ . "../../../../utils/posts.php";
-    if (UserSession::is_connected()) {
+    if (!UserSession::is_connected()) {
+      header("Location: /login");
+      exit();
+    } else {
       $saved_builds = UserSession::get_saved_posts();
     }
     ?>
@@ -25,15 +28,11 @@ include_once __DIR__ . "../../../../components/head/head.php";
     <div>
       <div class="section-content">
         <?php
-        if (!UserSession::is_connected()) {
-          echo "<p>You need to be logged in to see your saved builds</p>";
-        } else {
-          if (count($saved_builds) === 0) {
-            echo "<p>You haven't saved any build yet</p>";
-          }
-          foreach ($saved_builds as $post) {
-            small_card($post, true);
-          }
+        if (count($saved_builds) === 0) {
+          echo "<p>You haven't saved any build yet</p>";
+        }
+        foreach ($saved_builds as $post) {
+          small_card($post, true);
         }
         ?>
       </div>

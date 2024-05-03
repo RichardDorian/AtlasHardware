@@ -1,4 +1,4 @@
-/* Styles for input elements in login and register pages */
+/* Styles for input elements in login, register and add-post pages */
 
 /* Input */
 input.styled, textarea.styled {
@@ -23,6 +23,7 @@ input.styled:focus, textarea.styled:focus {
     border: 1px solid var(--color-primary);
 }
 
+/* Big and small inputs */
 form#add-post-form .big-input {
     width: 40%;
     min-width: 250px;

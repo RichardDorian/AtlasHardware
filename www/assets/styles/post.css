@@ -1,3 +1,5 @@
+/* Styles for the post page */
+
 main {
   position: relative;
 
@@ -6,6 +8,7 @@ main {
   align-items: center;
 }
 
+/* Background image */
 main > div#background {
   position: absolute;
   top: 0;
@@ -23,6 +26,7 @@ main > div#background {
   z-index: -1;
 }
 
+/* Content */
 main > div#content {
   width: 100%;
   margin: 40px 0;
@@ -48,6 +52,7 @@ div#main > h1 {
   margin-bottom: -10px;
 }
 
+/* Post details */
 div#post-details {
   display: flex;
   flex-direction: row;
@@ -56,12 +61,14 @@ div#post-details {
   width: 100%;
 }
 
+/* Post details action */
 div#details-action {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
+/* Parent of scrollbarindicator and images */
 div#images_and_scrollindicator {
   display: flex;
   flex-direction: row;
@@ -71,6 +78,7 @@ div#images_and_scrollindicator {
   align-items: center;
 }
 
+/* Images */
 div#images {
   margin: 30px 0;
   display: flex;
@@ -84,10 +92,12 @@ div#images {
   padding-bottom: 20px;
 }
 
+/* Scrollbar */
 div#images::-webkit-scrollbar {
   height: 7px;
 }
 
+/* Images */
 div#images > img {
   object-fit: contain;
   width: max-content;
@@ -97,6 +107,7 @@ div#images > img {
   border-radius: 10px;
 }
 
+/* Description */
 div#description {
   display: flex;
   flex-direction: column;
@@ -114,12 +125,14 @@ h2::before {
   font-size: 1em;
 }
 
+/* Technical specs */
 div#technical-specs-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Components grid */
 div#components-grid {
   display: flex;
   flex-direction: row;
@@ -129,6 +142,7 @@ div#components-grid {
   flex-wrap: wrap;
 }
 
+/* Element inside the components grid */
 div#components-grid > div {
   display: flex;
   flex-direction: column;
@@ -158,18 +172,12 @@ div#components-grid > div > a:hover {
   text-decoration: underline;
 }
 
+/* Comments */
 div#comments-title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-div#more-builds-content {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  overflow-x: auto;
 }
 
 div#comments-list {
@@ -188,6 +196,7 @@ div.comment {
   border-radius: 10px;
 }
 
+/* Responsive design */
 @media screen and (max-width: 1000px) {
   div#post-details p {
     overflow-wrap: break-word;
@@ -208,26 +217,3 @@ div.comment {
     min-width: initial;
   }
 }
-/*
-div#components-grid {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    justify-content: left;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-div#components-grid>div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 5px;
-    padding: 15px;
-    border-radius: 25px;
-    background-color: var(--color-background-light);
-    min-height: 120px;
-    min-width: 200px;
-    max-width: 300px;
-}*/

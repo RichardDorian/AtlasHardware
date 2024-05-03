@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit();
     }
     include_once __DIR__ . "/../../utils/posts.php";
-    
+
     [$title, $description, $price, $performance, $specs] = [
         $_POST["title"],
         $_POST["description"],
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             exit();
         }
     }
-    
+
     $title = htmlspecialchars($title);
     $description = htmlspecialchars($description);
     $price = intval($price);
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         http_response_code(400);
         exit();
     }
-   
+
     if (!is_int($performance) || $performance < 0 || $performance > 999) {
         http_response_code(400);
         exit();
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         http_response_code(400);
         exit();
     }
-    
+
     $specs = json_decode($specs, true);
     [$cpu, $gpu, $motherboard, $ram, $psu, $storage, $case] = [
         $specs["cpu"],
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $psu = htmlspecialchars($psu);
     $case = htmlspecialchars($case);
     # Loop through indexes and replace string with sanitized
-    foreach ($storage as $i => $st){
+    foreach ($storage as $i => $st) {
         if (!isset($st)) {
             http_response_code(400);
             exit();
@@ -114,10 +114,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         $st = htmlspecialchars($st);
         $storage[$i] = $st;
-
     }
-    
-    foreach([$cpu, $gpu, $motherboard, $ram, $psu, ...$storage, $case] as $spec) {
+
+    foreach ([$cpu, $gpu, $motherboard, $ram, $psu, ...$storage, $case] as $spec) {
         if (!is_string($spec)) {
             http_response_code(400);
             exit();
@@ -148,5 +147,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     http_response_code(200);
     echo $return_url;
     exit();
-
 }

@@ -17,8 +17,31 @@
     }
     formdata.append(
       'specs',
-      '{"cpu":"Intel i5 7600k","gpu":"PNY RTX 4090 SUPER","motherboard":"MSI B450 Tomahawk Max","ram":"Corsair LPX 32 GB DDR5-6400","psu":"Corsair RM750x","storage":["Curcial P1 1TB NVMe SSD","Seagate Barracuda 2TB HDD"],"case":"Fractal Design Meshify C"}'
+      JSON.stringify({
+        cpu: formdata.get('cpu'),
+        gpu: formdata.get('gpu'),
+        motherboard: formdata.get('motherboard'),
+        psu: formdata.get('psu'),
+        ram: formdata.get('ram'),
+        storage: [formdata.get('storage'), formdata.get('storage2')],
+        case: formdata.get('case'),
+      })
     );
+
+    for (const spec of [
+      'cpu',
+      'gpu',
+      'motherboard',
+      'psu',
+      'ram',
+      'storage1',
+      'storage2',
+      'storage',
+      'case',
+    ]) {
+      formdata.delete(spec);
+    }
+
     const response = await fetch('/add-post', {
       method: 'POST',
       body: formdata,

@@ -30,6 +30,7 @@ include_once __DIR__ . "/../components/head/head.php";
     // Fetch the latest posts and the posts with the best performance
     $latest_posts = Posts::get_latest_posts();
     $best_perf = Posts::get_best_perf();
+    $hot_posts = Posts::get_most_active_posts();
 
     // Initialize arrays to store the saved builds and posts
     $saved_builds = [];
@@ -39,7 +40,7 @@ include_once __DIR__ . "/../components/head/head.php";
     if (UserSession::is_connected()) {
       // Get the IDs of the latest posts and the posts with the best performance
       $post_ids = [];
-      foreach ([...$latest_posts, ...$best_perf] as $post) {
+      foreach ([...$latest_posts, ...$best_perf, ...$hot_posts] as $post) {
         if (!in_array($post->id, $post_ids)) $post_ids[] = $post->id;
       }
 
@@ -65,6 +66,24 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
       </div>
     </section> -->
+    <!-- Section of the hot builds -->
+    <section>
+      <h1>Hot Builds</h1>
+      <div>
+        <div class="section-header">
+          <h2>Hot Builds</h2>
+          <p>Explore the hot builds with the most comments in the last 7 days.</p>
+        </div>
+        <div class="section-content">
+          <?php
+          // Display the hot posts
+          foreach ($hot_posts as $post) {
+            small_card($post, in_array($post->id, $saved_posts_in_others));
+          }
+          ?>
+        </div>
+      </div>
+    </section>
 
     <!-- Section of the latest builds -->
     <section>

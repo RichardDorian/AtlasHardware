@@ -109,6 +109,21 @@ class Posts extends TableRelation
     return $posts;
   }
 
+  public static function get_most_active_posts(int $limit = 5, int $offset = 0)
+  {
+    $result = self::sql_query("SELECT hex(posts.id) AS id, hex(cover) AS cover, title, rating, performance, COUNT(comment) nposts FROM comments RIGHT JOIN posts ON posts.id = comments.post AND comments.date >= CURDATE() - INTERVAL 7 DAY GROUP BY posts.id ORDER BY `nposts` DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
+    if (gettype($result) === "integer") return $result;
+
+    $posts = [];
+
+    for ($i = 0; $i < $limit; $i++) {
+      $res = $result->fetch_assoc();
+      if (is_array($res)) $posts[] = PartialPost::from_sql_result($res);
+    }
+
+    return $posts;
+  }
+
   public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
     $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance, specs FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);

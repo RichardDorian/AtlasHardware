@@ -13,9 +13,9 @@ include_once __DIR__ . "/../../utils/user_session.php";
   </h3>
   <div class="details">
     <div class="numbers">
-      <span class="material-symbols-rounded">hotel_class</span>
+      <span class="material-symbols-rounded">euro_symbol</span>
       <span class="text">
-        <?php echo $data["rating"] ?>
+        <?php echo $data["starting_price"] ?>
       </span>
       <span class="material-symbols-rounded">speed</span>
       <span class="text">

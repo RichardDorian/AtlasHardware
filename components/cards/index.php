@@ -13,7 +13,7 @@ function small_card(PartialPost $post, bool $saved)
     "id" => $post->id,
     "image" => $post->cover,
     "title" => $post->title,
-    "rating" => $post->rating,
+    "starting_price" => $post->starting_price,
     "benchmark" => $post->performance,
     "saved" => $saved,
   ];

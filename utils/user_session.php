@@ -147,7 +147,7 @@ class UserSession
     $link = get_database_link();
     if (gettype($link) === "integer") return [];
 
-    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM users_saved_posts INNER JOIN posts ON users_saved_posts.post = posts.id WHERE users_saved_posts.user = unhex(?)");
+    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance FROM users_saved_posts INNER JOIN posts ON users_saved_posts.post = posts.id WHERE users_saved_posts.user = unhex(?)");
     $stmt->bind_param("s", $_SESSION["user_id"]);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -168,7 +168,7 @@ class UserSession
     $link = get_database_link();
     if (gettype($link) === "integer") return [];
 
-    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts WHERE author = unhex(?)");
+    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance FROM posts WHERE author = unhex(?)");
     $stmt->bind_param("s", $_SESSION["user_id"]);
     $stmt->execute();
     $result = $stmt->get_result();

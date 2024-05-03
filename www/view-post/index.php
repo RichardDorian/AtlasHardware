@@ -80,6 +80,8 @@ HTML;
           <!-- Buttons to rate and save -->
           <div id="details-action">
             <?php
+            /*
+            The rating feature is not implemented yet but the buttons are ready to be used.
             // Button to rate the post
             $data = ["text" => "Rate", "icon" => "star"];
             include __DIR__ . "/../../components/button.php";
@@ -87,7 +89,7 @@ HTML;
             // Button to show the rating of the post
             $data = ["text" => "$post->rating/10", "icon" => "hotel_class"];
             include __DIR__ . "/../../components/button.php";
-
+            */
             // Button to save or unsave the post if the user is connected
             if (UserSession::is_connected()) {
               $is_saved = UserSession::is_saved_post($post->id);
@@ -129,7 +131,7 @@ HTML;
                 ["overview", "Overview", true],
                 ["images", "Images"],
                 ["description", "Description"],
-                ["performance", "Performance"],
+                ["performance", "Other"],
                 ["technical-specs", "Technical specs"],
                 ["comments", "Comments"],
               ]
@@ -148,7 +150,7 @@ HTML;
         <h2 id="performance">Other</h2>
         <div>
           <p>Performance: <?php echo $post->performance ?>/1000</p>
-          <p>Starting price: $<?php echo $post->starting_price ?></p>
+          <p>Starting price: <?php echo $post->starting_price ?>€</p>
         </div>
 
         <!-- Technical specs of the build -->

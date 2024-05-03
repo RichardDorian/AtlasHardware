@@ -11,7 +11,7 @@ class PartialPost
   public string $id;
   public string $cover;
   public string $title;
-  public float $rating;
+  public float $starting_price;
   public int $performance;
   public array $images;
 
@@ -19,15 +19,15 @@ class PartialPost
    * @param string $id
    * @param string $cover
    * @param string $title
-   * @param float $rating
+   * @param float $starting_price
    * @param int $performance
    */
-  public function __construct(string $id, string $cover, string $title, float $rating, int $performance)
+  public function __construct(string $id, string $cover, string $title, float $starting_price, int $performance)
   {
     $this->id = $id;
     $this->cover = $cover;
     $this->title = $title;
-    $this->rating = $rating;
+    $this->starting_price = $starting_price;
     $this->performance = $performance;
     $this->images = [];
   }
@@ -66,7 +66,7 @@ class PartialPost
       strtolower($result["id"]),
       strtolower($result["cover"]),
       $result["title"],
-      $result["rating"],
+      $result["starting_price"],
       $result["performance"]
     );
   }
@@ -80,7 +80,7 @@ class Post extends PartialPost
   public string $description;
   public array $specs;
   public ?User $author;
-  public float $starting_price;
+  public float $rating;
 
   /** Initialize a new Post object
    * @param string $id
@@ -96,12 +96,12 @@ class Post extends PartialPost
    */
   public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs, float $starting_price)
   {
-    parent::__construct($id, $cover, $title, $rating, $performance);
+    parent::__construct($id, $cover, $title, $starting_price, $performance);
     $this->author_id = $author;
     $this->date = $date;
     $this->description = $description;
     $this->specs = json_decode($raw_specs, true);
-    $this->starting_price = $starting_price;
+    $this->rating = $rating;
   }
 
   /** Fetch the author of the post
@@ -143,7 +143,7 @@ class Posts extends TableRelation
   public static function get_latest_posts(int $limit = 5, int $offset = 0)
   {
     // Query the database for the latest posts
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY date DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance FROM posts ORDER BY date DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     // Initialize an array to store the posts
@@ -166,7 +166,7 @@ class Posts extends TableRelation
   public static function get_most_active_posts(int $limit = 5, int $offset = 0)
   {
     // Query the database for the most active posts
-    $result = self::sql_query("SELECT hex(posts.id) AS id, hex(cover) AS cover, title, rating, performance, COUNT(comment) nposts FROM comments RIGHT JOIN posts ON posts.id = comments.post AND comments.date >= CURDATE() - INTERVAL 7 DAY GROUP BY posts.id ORDER BY `nposts` DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
+    $result = self::sql_query("SELECT hex(posts.id) AS id, hex(cover) AS cover, title, starting_price, performance, COUNT(comment) nposts FROM comments RIGHT JOIN posts ON posts.id = comments.post AND comments.date >= CURDATE() - INTERVAL 7 DAY GROUP BY posts.id ORDER BY `nposts` DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     // Initialize an array to store the posts
@@ -189,7 +189,7 @@ class Posts extends TableRelation
   public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
     // Query the database for the best performing posts
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance, specs FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance, specs FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
     // Initialize an array to store the posts
@@ -309,7 +309,7 @@ class Posts extends TableRelation
   public static function get_posts_from_search(string $search)
   {
     // Search for the exact component
-    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts WHERE title LIKE ?", "s", ["%$search%"]);
+    $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance FROM posts WHERE title LIKE ?", "s", ["%$search%"]);
     // Check if the query failed
     if (gettype($result) === "integer") return $result;
 
@@ -321,7 +321,7 @@ class Posts extends TableRelation
     // If no results are found
     if (count($results) === 0) {
       // Retrieve all the posts
-      $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts", "", []);
+      $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, starting_price, performance FROM posts", "", []);
       // Check if the query failed
       if (gettype($result) === "integer") return $result;
 

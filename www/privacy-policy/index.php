@@ -1,17 +1,31 @@
-<?php include_once __DIR__ . "/../../components/cards/index.php" ?>
+<?php
+// Include the component for generating the card elements
+include_once __DIR__ . "/../../components/cards/index.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <?php
+// Define the CSS and JS files to be included in the head of the document
 $styles = ["header.css", "info-text.css", "footer.css"];
 $scripts = ["header.js"];
+
+// Define the title of the document
 $title = "Privacy Policy";
+
+// Include the head component with the defined variables
 include_once __DIR__ . "/../../components/head/head.php";
 ?>
 
 <body>
-  <?php include_once __DIR__ . "/../../components/header/header.php" ?>
+  <?php
+  // Include the header component
+  include_once __DIR__ . "/../../components/header/header.php";
+  ?>
+
   <main>
+    <!-- Display the privacy policy -->
     <h1>
       <span class="material-symbols-rounded">
         policy
@@ -77,7 +91,10 @@ include_once __DIR__ . "/../../components/head/head.php";
 
   </main>
 
-  <?php include_once __DIR__ . "/../../components/footer/footer.php" ?>
+  <?php
+  // Include the footer component
+  include_once __DIR__ . "/../../components/footer/footer.php";
+  ?>
 
 </body>
 

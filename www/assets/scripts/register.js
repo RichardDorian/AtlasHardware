@@ -30,6 +30,11 @@
     elements.statusContainer.appendChild(elements.statusText);
   }
 
+  /**
+   * Set the status of the registration
+   * @param {string} level Level of the status (warning, error)
+   * @param {string} message Message to display
+   */
   function setStatus(level, message) {
     if (elements.statusContainer === null) createStatusElements();
 

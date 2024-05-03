@@ -1,10 +1,13 @@
 <?php include_once __DIR__ . "/add-post.php" ?>
 
+<!-- Include card components and user session utilities -->
 <?php include_once __DIR__ . "/../../components/cards/index.php" ?>
 <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Include head component with necessary styles, scripts, and title -->
 <?php
 $styles = ["header.css", "footer.css", "add-post.css", "input.css", "button.css"];
 $scripts = ["header.js", "add-post.js"];
@@ -13,19 +16,24 @@ include_once __DIR__ . "/../../components/head/head.php";
 ?>
 
 <body>
+  <!-- Check if user is connected, redirect to login page if not -->
   <?php
   if (!UserSession::is_connected()) {
     header("Location: /login");
     exit();
   }
   ?>
+
+  <!-- Include header component -->
   <?php include_once __DIR__ . "/../../components/header/header.php" ?>
+
   <main>
     <h1>
       <span class="material-symbols-rounded">add</span>
       <span>New Post</span>
     </h1>
 
+    <!-- Form for creating a new post with various input fields -->
     <form id="add-post-form">
       <div class="form-group">
         <label for="title">Title</label>
@@ -38,59 +46,63 @@ include_once __DIR__ . "/../../components/head/head.php";
         <input type="number" id="performance" class="styled small-input" name="performance" min="0" max="999" placeholder="875" required />
         <input type="file" id="image-file-picker" accept="image/*" style="display: none" />
       </div>
+
+      <!-- Grid for displaying input fields for various PC components -->
       <div id="components-grid">
-            <div>
-              <span>
-                <span class="material-symbols-rounded">memory</span>
-                <h3>CPU</h3>
-              </span>
-              <input type="text" id="cpu" class="styled big-input" name="cpu" placeholder="i7 11700k" required />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">monitor</span>
-                <h3>GPU</h3>
-              </span>
-              <input type="text" id="gpu" class="styled big-input" name="gpu" placeholder="RTX 3060 Ti" required />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">developer_board</span>
-                <h3>Motherboard</h3>
-              </span>
-              <input type="text" id="motherboard" class="styled big-input" name="motherboard" placeholder="MSI Z490-A PRO" required />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">bolt</span>
-                <h3>PSU</h3>
-              </span>
-              <input type="text" id="psu" class="styled big-input" name="psu" placeholder="Corsair RM750x" required />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">memory_alt</span>
-                <h3>RAM</h3>
-              </span>
-              <input type="text" id="ram" class="styled big-input" name="ram" placeholder="Corsair Vengeance LPX 16GB" required />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">database</span>
-                <h3>Storage</h3>
-              </span>
-              <input type="text" id="storage" class="styled big-input" name="storage" placeholder="Samsung 970 EVO 1TB" required />
-              <input type="text" id="storage2" class="styled big-input" name="storage2" placeholder="Seagate Barracuda 4to" />
-            </div>
-            <div>
-              <span>
-                <span class="material-symbols-rounded">package_2</span>
-                <h3>Case</h3>
-              </span>
-              <input type="text" id="case" class="styled big-input" name="case" placeholder="NZXT H510" required />
-            </div>
-          </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">memory</span>
+            <h3>CPU</h3>
+          </span>
+          <input type="text" id="cpu" class="styled big-input" name="cpu" placeholder="i7 11700k" required />
         </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">monitor</span>
+            <h3>GPU</h3>
+          </span>
+          <input type="text" id="gpu" class="styled big-input" name="gpu" placeholder="RTX 3060 Ti" required />
+        </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">developer_board</span>
+            <h3>Motherboard</h3>
+          </span>
+          <input type="text" id="motherboard" class="styled big-input" name="motherboard" placeholder="MSI Z490-A PRO" required />
+        </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">bolt</span>
+            <h3>PSU</h3>
+          </span>
+          <input type="text" id="psu" class="styled big-input" name="psu" placeholder="Corsair RM750x" required />
+        </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">memory_alt</span>
+            <h3>RAM</h3>
+          </span>
+          <input type="text" id="ram" class="styled big-input" name="ram" placeholder="Corsair Vengeance LPX 16GB" required />
+        </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">database</span>
+            <h3>Storage</h3>
+          </span>
+          <input type="text" id="storage" class="styled big-input" name="storage" placeholder="Samsung 970 EVO 1TB" required />
+          <input type="text" id="storage2" class="styled big-input" name="storage2" placeholder="Seagate Barracuda 4to" />
+        </div>
+        <div>
+          <span>
+            <span class="material-symbols-rounded">package_2</span>
+            <h3>Case</h3>
+          </span>
+          <input type="text" id="case" class="styled big-input" name="case" placeholder="NZXT H510" required />
+        </div>
+      </div>
+      </div>
+
+      <!-- Container for image upload button -->
       <div id="image-container">
         <div id="button_to_add_img" onclick="chooseImageFile()">
           <p>Add image(s) to your post</p>
@@ -98,11 +110,14 @@ include_once __DIR__ . "/../../components/head/head.php";
         </div>
       </div>
 
+      <!-- Submit button for form -->
       <button type="submit" class="styled">Post</button>
 
     </form>
 
   </main>
+
+  <!-- Include footer component -->
   <?php include_once __DIR__ . "/../../components/footer/footer.php" ?>
 </body>
 

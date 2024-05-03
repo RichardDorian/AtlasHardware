@@ -106,7 +106,7 @@ class UserSession
     $link = get_database_link();
     if (gettype($link) === "integer") return [];
 
-    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM users_saved_posts INNER JOIN posts ON users_saved_posts.post = posts.id WHERE users_saved_posts.user = unhex(?) LIMIT 5");
+    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM users_saved_posts INNER JOIN posts ON users_saved_posts.post = posts.id WHERE users_saved_posts.user = unhex(?)");
     $stmt->bind_param("s", $_SESSION["user_id"]);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -117,6 +117,24 @@ class UserSession
     }
 
     return $saved_posts;
+  }
+
+  public static function get_user_posts()
+  {
+    $link = get_database_link();
+    if (gettype($link) === "integer") return [];
+
+    $stmt = $link->prepare("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts WHERE author = unhex(?)");
+    $stmt->bind_param("s", $_SESSION["user_id"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $user_posts = [];
+    while ($row = $result->fetch_assoc()) {
+      $user_posts[] = PartialPost::from_sql_result($row);
+    }
+
+    return $user_posts;
   }
 }
 

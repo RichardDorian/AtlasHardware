@@ -58,14 +58,16 @@ class Post extends PartialPost
   public string $description;
   public array $specs;
   public ?User $author;
+  public float $starting_price;
 
-  public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs)
+  public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs, float $starting_price)
   {
     parent::__construct($id, $cover, $title, $rating, $performance);
     $this->author_id = $author;
     $this->date = $date;
     $this->description = $description;
     $this->specs = json_decode($raw_specs, true);
+    $this->starting_price = $starting_price;
   }
 
   public function fetch_author()
@@ -84,7 +86,8 @@ class Post extends PartialPost
       strtolower($result["author"]),
       $result["date"],
       $result["description"],
-      $result["specs"]
+      $result["specs"],
+      $result["starting_price"]
     );
   }
 }
@@ -123,7 +126,7 @@ class Posts extends TableRelation
 
   public static function get_post(string $id)
   {
-    $result = self::sql_query("SELECT hex(author) AS author, hex(cover) AS cover, date, title, description, rating, performance, specs FROM posts WHERE id = unhex(?)", "s", [$id]);
+    $result = self::sql_query("SELECT hex(author) AS author, hex(cover) AS cover, date, title, description, rating, performance, specs, starting_price FROM posts WHERE id = unhex(?)", "s", [$id]);
     if (gettype($result) === "integer") return $result;
 
     $res = $result->fetch_assoc();
@@ -152,9 +155,9 @@ class Posts extends TableRelation
   {
     $link = get_database_link();
     $post_id = UUID::generate_v4();
-    
+
     foreach ($files["tmp_name"] as $i => $file) {
-      
+
       $image_id = UUID::generate_v4();
       #Get the blob data from the file info
       $filedata = file_get_contents($file);
@@ -174,9 +177,8 @@ class Posts extends TableRelation
       $stmt->execute();
 
       if ($stmt->errno) return $stmt->errno;
-      
     }
-    
+
 
     if ($stmt->errno) return $stmt->errno;
     return "/post/$post_id";

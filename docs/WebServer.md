@@ -29,7 +29,10 @@ DocumentRoot "path/to/project/www"
 For security reasons we have disabled the `expose_php`. With this off, the user cannot see the PHP version we're using (which can prevent attacks). In fact, the user cannot see we are using PHP at all since we rewrite the URLs containing `.php`. We're also going to change the name of the session cookie as we still want to remove any indication that we use php.
 
 ```ini
+[PHP]
 expose_php=off
+
+[Session]
 session.name=SessionCookie
 ```
 

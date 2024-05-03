@@ -1,3 +1,4 @@
+<!-- View for logged in users -->
 <a href="/add-post" class="with-icon">
   <span class="material-symbols-rounded">add</span>
   <span>Post</span>

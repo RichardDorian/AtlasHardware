@@ -1,8 +1,12 @@
+<!-- Template for a small card -->
+
 <?php
+// Include the utility file for handling user sessions
 include_once __DIR__ . "/../../utils/user_session.php";
 ?>
 
 <div class="card small">
+  <!-- Display the image, title, rating, and benchmark of the PC -->
   <img src="<?php echo "/assets/image/" . $data["image"] ?>" draggable="false" alt="Image du PC contenant : <?php echo $data["title"] ?>">
   <h3>
     <?php echo $data["title"] ?>
@@ -19,6 +23,7 @@ include_once __DIR__ . "/../../utils/user_session.php";
       </span>
     </div>
     <?php
+    // Display the bookmark icon if the user is connected
     if (UserSession::is_connected()) {
       $class = $data["saved"] ? " saved" : "";
       $icon = $data["saved"] ? "bookmark_added" : "bookmark";
@@ -29,6 +34,7 @@ include_once __DIR__ . "/../../utils/user_session.php";
     }
     ?>
   </div>
+  <!-- Button to read the post -->
   <a class="main" href="/post/<?php echo $data["id"] ?>">
     <span class="material-symbols-rounded">chevron_right</span>
     <span>Read post</span>

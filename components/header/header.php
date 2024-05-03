@@ -1,3 +1,5 @@
+<!-- Header -->
+
 <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
 
 <header>
@@ -5,12 +7,12 @@
     <span class="material-symbols-rounded">home</span>
     <span>Home</span>
   </a>
-  
+
   <a href="/browse" class="with-icon">
     <span class="material-symbols-rounded">travel_explore</span>
     <span>Browse</span>
   </a>
-  
+
   <form action="/search" method="get" id="search">
     <input type="text" name="query" id="query" placeholder="Search ..." required>
     <button type="submit">
@@ -18,6 +20,7 @@
     </button>
   </form>
   <?php
+  // Include the header component based on the user's connection status
   if (UserSession::is_connected()) {
     include_once __DIR__ . "/loggedin.php";
   } else {

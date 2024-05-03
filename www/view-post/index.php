@@ -85,19 +85,19 @@ HTML;
             ?>
           </div>
           <div>
-          <?php
-          $data = [
-            "links" => [
-              ["overview", "Overview", true],
-              ["images", "Images"],
-              ["description", "Description"],
-              ["performance", "Performance"],
-              ["technical-specs", "Technical specs"],
-              ["comments", "Comments"],
-            ]
-          ];
-          include_once __DIR__ . "/../../components/post/scroll-indicatator.php";
-          ?></div>
+            <?php
+            $data = [
+              "links" => [
+                ["overview", "Overview", true],
+                ["images", "Images"],
+                ["description", "Description"],
+                ["performance", "Performance"],
+                ["technical-specs", "Technical specs"],
+                ["comments", "Comments"],
+              ]
+            ];
+            include_once __DIR__ . "/../../components/post/scroll-indicatator.php";
+            ?></div>
         </div>
         <div id="description">
           <p><?php echo $post->description ?></p>
@@ -107,40 +107,49 @@ HTML;
         <div id="technical-specs-content">
           <p>Starting price: $TODO</p>
           <div id="components-grid">
+            <?php
+            function componentLink($component)
+            {
+              $link = "https://google.com/search?q=" . urlencode($component);
+              echo <<<HTML
+              <a href="$link" target="_blank">$component</a>
+              HTML;
+            }
+            ?>
             <div>
               <span>
                 <span class="material-symbols-rounded">memory</span>
                 <h3>CPU</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["cpu"] ?>" target="_blank"><?php echo $post->specs["cpu"] ?></a>
+              <?php componentLink($post->specs["cpu"]) ?>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">monitor</span>
                 <h3>GPU</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["gpu"] ?>" target="_blank"><?php echo $post->specs["gpu"] ?></a>
+              <?php componentLink($post->specs["gpu"]) ?>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">developer_board</span>
                 <h3>Motherboard</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["motherboard"] ?>" target="_blank"><?php echo $post->specs["motherboard"] ?></a>
+              <?php componentLink($post->specs["motherboard"]) ?>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">bolt</span>
                 <h3>PSU</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["psu"] ?>" target="_blank"><?php echo $post->specs["psu"] ?></a>
+              <?php componentLink($post->specs["psu"]) ?>
             </div>
             <div>
               <span>
                 <span class="material-symbols-rounded">memory_alt</span>
                 <h3>RAM</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["ram"] ?>" target="_blank"><?php echo $post->specs["ram"] ?></a>
+              <?php componentLink($post->specs["ram"]) ?>
             </div>
             <div>
               <span>
@@ -149,7 +158,7 @@ HTML;
               </span>
               <?php
               foreach ($post->specs["storage"] as $storage) {
-                echo "<a href=\"https://google.com/search?q=$storage\" target=\"_blank\">$storage</a>";
+                componentLink($storage);
               }
               ?>
             </div>
@@ -158,7 +167,7 @@ HTML;
                 <span class="material-symbols-rounded">package_2</span>
                 <h3>Case</h3>
               </span>
-              <a href="https://google.com/search?q=<?php echo $post->specs["case"] ?>" target="_blank"><?php echo $post->specs["case"] ?></a>
+              <?php componentLink($post->specs["case"]) ?>
             </div>
           </div>
         </div>

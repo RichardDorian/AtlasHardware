@@ -2,7 +2,9 @@
   const myAccountEl = document.querySelector('#my-account > button');
   const menuEl = document.querySelector('header > div#my-account > div');
 
+  // If the user is logged out, the menuEl will be null
   if (myAccountEl instanceof Element && menuEl instanceof Element) {
+    // When the user clicks on the account button, we show the menu
     myAccountEl?.addEventListener('click', () =>
       menuEl.classList.toggle('hidden')
     );
@@ -11,19 +13,21 @@
       menuEl.classList.add('hidden');
     }
 
+    // If the user clicks outside the menu, we hide it
     document.body.addEventListener('click', (event) => {
       if (myAccountEl.contains(event.target)) return;
       hideMenu();
     });
+
+    // If the user presses the escape key, we hide the menu
     document.addEventListener('keyup', (event) => {
       if (event.key !== 'Escape') return;
 
       hideMenu();
-      myAccountEl.blur();
+      myAccountEl.blur(); // We remove focus from the element
     });
 
-    // the account popup is positioned fixed, so it doesn't move with the page scroll, so we need to hide it when the user scrolls
-    // it's in fixed to be positioned relative viewport, in absolute the position will be relative to the first parent with a relative position
+    // Hide menu on scroll
     window.addEventListener('scroll', hideMenu);
   }
 }

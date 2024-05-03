@@ -14,6 +14,10 @@
     ),
   };
 
+  /**
+   * Create the pop up info element to display the status of the
+   * registration (username already taken, password too short, etc.)
+   */
   function createStatusElements() {
     elements.statusContainer = document.createElement('span');
     status.appendChild(elements.statusContainer);
@@ -35,6 +39,14 @@
     elements.statusText.textContent = message;
   }
 
+  /**
+   * Checks if the given string matches the length requirements
+   * @param {string} string String to check
+   * @param {string} name Name of the field
+   * @param {number} min Minimum length of the string
+   * @param {number} max Maximum length of the string
+   * @returns {boolean} Whether or not the string is within the length limits
+   */
   function lengthCheck(string, name, min, max) {
     if (string.length < min) {
       setStatus('warning', `${name} must be at least ${min} characters`);
@@ -49,6 +61,9 @@
     return true;
   }
 
+  // We override the default form submission to check to
+  // validate the input before sending to the server
+  // to avoid unnecessary requests
   elements.register.addEventListener('click', (event) => {
     event.preventDefault();
 

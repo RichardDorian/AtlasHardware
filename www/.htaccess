@@ -9,6 +9,7 @@ RewriteRule ^(.*)\.php$ - [R=404,L]
 
 RewriteRule ^assets/image/([^/]+)$ /assets/images?id=$1 [QSA,L]
 RewriteRule ^post/([^/]+)$ /view-post?id=$1 [QSA,L]
+RewriteRule ^post/([^/]+)/comment$ /post/comment?id=$1 [QSA,L]
 
 ErrorDocument 404 /404.php
 

@@ -46,7 +46,7 @@ CREATE TABLE `atlashardware`.`comments` (
   `author` BINARY(16) NOT NULL,
   `post` BINARY(16) NOT NULL,
   `replied_to` BINARY(16) NULL DEFAULT NULL,
-  `date` DATETIME NOT NULL,
+  `date` DATETIME NOT NULL DEFAULT current_timestamp(),
   `comment` TEXT NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`author`) REFERENCES `users`(`id`),

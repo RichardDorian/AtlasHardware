@@ -148,7 +148,7 @@ HTML;
         <h2 id="performance">Other</h2>
         <div>
           <p>Performance: <?php echo $post->performance ?>/1000</p>
-          <p>Starting price: <?php echo $post->StartingPrice ?></p>
+          <p>Starting price: <?php echo $post->startingPrice ?></p>
         </div>
 
         <!-- Technical specs of the build -->

@@ -138,7 +138,7 @@
     imagePreview.addEventListener('mouseenter', function () {
       imagePreviewCloseButton.style.display = 'block';
     });
-    imagePreview.addEventListener('mouseout', function () {
+    imagePreview.addEventListener('mouseleave', function () {
       imagePreviewCloseButton.style.display = 'none';
     });
   }

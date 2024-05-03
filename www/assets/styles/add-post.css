@@ -45,6 +45,7 @@ div#image-container > div#button_to_add_img > span {
 .image-preview-close-button {
     position: absolute;
     cursor: pointer;
+    display: none;
 }
 
 .image-preview-close-button>span {

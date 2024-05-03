@@ -1,7 +1,10 @@
+<!-- Footer -->
+
 <?php include_once __DIR__ . "/../../utils/user_session.php" ?>
 
 <footer>
   <?php
+  // Include the footer component based on the user's connection status
   if (!UserSession::is_connected() && !(isset($hide_register_footer) && $hide_register_footer)) {
     include_once __DIR__ . "/loggedout.php";
   }

@@ -1,0 +1,110 @@
+/* ROOT CSS */
+
+/* Reset CSS */
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Colors */
+:root {
+  --color-background: #0e0e0e;
+  --color-background-hard: #080808;
+  --color-background-light: #1a1a1a;
+  --color-text: #c3c3c3;
+  --color-text-hard: #9d9d9d;
+  --color-text-primary: #121212;
+
+  --color-primary: #f5c518;
+  --color-secondary: #797979;
+
+  --color-error: #f51818;
+  --color-warning: #f55d18;
+}
+
+/* Body */
+body {
+  width: 100%;
+  height: 100vh;
+
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+/* Main, this property allows the main content to extend on the whole page so the footer 
+   will be always stuck at to bottom even if there is not content on main
+*/
+main {
+  flex: 1;
+}
+
+/* h1 title used on some pages */
+main > h1 {
+  font-size: 3em;
+  color: var(--color-text);
+  text-align: center;
+  padding: 15px 0 30px 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+main > h1 > span.material-symbols-rounded {
+  font-size: 1em;
+}
+
+/* Vertical Scrollbar, our website is in dark mode so we need to change the scrollbar color */
+::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 10px;
+  background-color: var(--color-background-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-hard);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #4e4e4e;
+}
+
+
+/* Disable the default text-decoration on links */
+a {
+  text-decoration: none;
+}
+
+/* 
+This is a trick to remove the white background color on input fields when the user uses the autocomplete feature
+Source: https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete
+*/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-background-clip: text;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text);
+}
+
+button {
+  cursor: pointer;
+}
+
+.material-symbols-rounded {
+  user-select: none;
+}

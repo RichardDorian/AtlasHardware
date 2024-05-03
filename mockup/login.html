@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="assets/styles/root.css">
+    <link rel="stylesheet" href="assets/styles/header.css">
+    <link rel="stylesheet" href="assets/styles/footer.css">
+
+    <link rel="stylesheet" href="assets/styles/auth-forms.css">
+    <link rel="stylesheet" href="assets/styles/button.css">
+    <link rel="stylesheet" href="assets/styles/input.css">
+    <link rel="stylesheet" href="assets/styles/tabs.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+
+<body>
+
+    <header>
+        <a href="index.html" class="with-icon">
+            <span class="material-symbols-rounded">home</span>
+            <span>Home</span>
+        </a>
+
+        <a href="#" class="with-icon">
+            <span class="material-symbols-rounded">travel_explore</span>
+            <span>Browse</span>
+        </a>
+
+        <form action="#" method="get" id="search">
+            <input type="text" name="query" id="query" placeholder="Search ..." required>
+            <button type="submit">
+                <span class="material-symbols-rounded">search</span>
+            </button>
+        </form>
+        <a href="login.html" class="with-icon">
+            <span class="material-symbols-rounded">login</span>
+            <span>Login</span>
+        </a>
+        <a href="add-post.html" class="with-icon">
+            <span class="material-symbols-rounded">add</span>
+            <span>Add post</span>
+        </a>
+    </header>
+
+
+
+
+    <main>
+        <div id="auth-parent">
+            <div id="auth-select">
+                <div class="tabs">
+                    <a disabled class="active">Login</a>
+                    <a href="#">Register</a>
+                </div>
+            </div>
+
+            <form action="#" method="get" class="auth">
+                <input class="styled" type="text" name="username" placeholder="Username" autocomplete="username"
+                    required minlength="4" maxlength="20">
+                <input class="styled" type="password" name="password" placeholder="Password"
+                    autocomplete="current-password" required minlength="8" maxlength="100">
+                <button class="styled" type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+
+    <footer>
+        <a href="#">
+            Unlock the full experience by creating an account now
+        </a>
+        <div id="links">
+            <div>
+                <a href="#">Home</a>
+                <a href="#">Browse</a>
+                <a href="#">Register</a>
+                <a href="#">Login</a>
+            </div>
+            <div>
+                <a href="#">Conditions of Use</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Site map</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+        <span id="copyright">© 2024 Atlas Hardware</span>
+    </footer>
+
+</body>
+
+</html>

@@ -37,6 +37,8 @@ include_once __DIR__ . "/../../components/head/head.php";
       </h2>
       <a href="/">Home</a>
       <a href="/browse">Browse</a>
+      <a href="/add-post">Add Post</a>
+      <a href="/stats">Stats</a>
     </div>
 
     <div>

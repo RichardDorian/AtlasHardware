@@ -1,0 +1,111 @@
+section {
+  position: relative;
+
+  margin: 8vmax 0 10vmax 0;
+}
+
+section > h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  /*font-weight: 1000;*/
+  font-size: 11vw;
+  text-align: center;
+  color: #c3c3c319;
+
+  position: absolute;
+  top: 0;
+  margin-top: -150px;
+  width: 100%;
+  user-select: none;
+  z-index: -1;
+}
+
+section > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  /*margin: 0 150px;*/
+  overflow: hidden;
+}
+
+section > div > div.section-header {
+  margin: 0 7vw;
+}
+
+section > div > div.section-header > h2::before {
+  font-size: small;
+  content: '•  ';
+  color: var(--color-primary);
+  font-size: 1em;
+}
+
+section > div > div.section-header > h2 {
+  font-size: 28px;
+}
+
+section > div > div.section-header > p {
+  font-size: 16px;
+  color: var(--color-text-hard);
+}
+
+section > div > div.section-content {
+  margin-top: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  width: 100%;
+  /*justify-content: center;*/
+  overflow: auto;
+}
+
+section > div > div.section-content::-webkit-scrollbar {
+  height: 7px;
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+section > div > div.section-content::-webkit-scrollbar-thumb {
+  background-color: var(--color-text-hard);
+  border-radius: 10px;
+}
+
+section > div > div.section-content::-webkit-scrollbar-track {
+  background-color: var(--color-background-light);
+  border-radius: 10px;
+}
+
+section > div > div.section-content::-webkit-scrollbar-button:start:decrement {
+  width: 7vw;
+  display: block;
+  background: transparent;
+}
+
+section > div > div.section-content::-webkit-scrollbar-button:end:increment {
+  width: 7vw;
+  display: block;
+  background: transparent;
+
+}
+
+
+
+section > div > div.section-content > p {
+  width: 100%;
+  text-align: center;
+}
+
+section > div > div.section-content >div:first-child {
+  margin-left: 7vw;
+}
+
+section > div > div.section-content >div:last-child {
+  margin-right: 7vw;
+}
+
+
+@media screen and (max-width: 1200px) {
+  section > h1 {
+    font-size: 0;
+  }
+}

@@ -13,6 +13,7 @@ For testing purposes we put `.sql` files that we can import in the database. Tho
 `my.ini`
 
 ```ini
+[mysqld]
 max_allowed_packet=500M
 ```
 

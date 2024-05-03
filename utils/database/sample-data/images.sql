@@ -1,6 +1,3 @@
-SET
-  session wait_timeout = 300;
-
 INSERT INTO
   `atlashardware`.`images` (id, image)
 VALUES

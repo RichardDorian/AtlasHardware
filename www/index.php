@@ -51,7 +51,7 @@ include_once __DIR__ . "/../components/head/head.php";
     }
     ?>
     <!-- Section of the top budget builds -->
-    <section>
+    <!-- <section>
       <h1>Top Budget</h1>
       <div>
         <div class="section-header">
@@ -64,7 +64,7 @@ include_once __DIR__ . "/../components/head/head.php";
           ?>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Section of the latest builds -->
     <section>

@@ -94,7 +94,7 @@ INSERT INTO
 VALUES
   (
     0x69fc1a864c2143e180ffe1f8387423aa,
-    0x76b6254b6746435cb5f77fb7216e0d80,
+    0x9a8d8a56afbb4072bb9a925ed3b62770,
     0x5a6e68b8750d45629cb5c57a67049395,
     'R7 5800x RTX 4070 Ti',
     '2023-12-31 01:39:52',
@@ -112,6 +112,14 @@ VALUES
     0x69fc1a864c2143e180ffe1f8387423aa,
     0x5a6e68b8750d45629cb5c57a67049395,
     0
+  );
+
+INSERT INTO
+  `atlashardware`.`users_saved_posts` (user, post)
+VALUES
+  (
+    0x9a8d8a56afbb4072bb9a925ed3b62770,
+    0x69fc1a864c2143e180ffe1f8387423aa
   );
 
 INSERT INTO
@@ -159,6 +167,14 @@ VALUES
   );
 
 INSERT INTO
+  `atlashardware`.`users_saved_posts` (user, post)
+VALUES
+  (
+    0x9a8d8a56afbb4072bb9a925ed3b62770,
+    0x67e4738aff204740a28d2412077dcf51
+  );
+
+INSERT INTO
   `atlashardware`.`posts` (
     id,
     author,
@@ -174,7 +190,7 @@ INSERT INTO
 VALUES
   (
     0x191b22968fa7427684277b8dd105a798,
-    0x76b6254b6746435cb5f77fb7216e0d80,
+    0x9a8d8a56afbb4072bb9a925ed3b62770,
     0x8f8472a7a9504a8daaf4487a34f3a8a2,
     'i7 11700k RTX 3060 Ti',
     '2024-04-10 18:08:53',

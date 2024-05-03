@@ -33,11 +33,13 @@ include_once __DIR__ . "../../../../components/head/head.php";
     if (UserSession::is_connected()) {
       $user_posts = UserSession::get_user_posts();
 
-      $user_post_ids = [];
-      foreach ($user_posts as $post) {
-        $user_post_ids[] = $post->id;
+      if (count($user_posts) !== 0) {
+        $user_post_ids = [];
+        foreach ($user_posts as $post) {
+          $user_post_ids[] = $post->id;
+        }
+        $saved_user_posts = UserSession::are_saved_posts($user_post_ids);
       }
-      $saved_user_posts = UserSession::are_saved_posts($user_post_ids);
     }
     ?>
 

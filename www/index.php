@@ -95,10 +95,15 @@ include_once __DIR__ . "/../components/head/head.php";
         </div>
         <div class="section-content">
           <?php
+          if (!UserSession::is_connected()) {
+            echo "<p>Create an account now to unlock this feature</p>";
+          }
+
           // Display the saved builds only if the user has saved any
-          if (count($saved_builds) === 0) {
+          else if (count($saved_builds) === 0) {
             echo "<p>You haven't saved any build yet</p>";
           }
+
           foreach ($saved_builds as $post) {
             small_card($post, true);
           }

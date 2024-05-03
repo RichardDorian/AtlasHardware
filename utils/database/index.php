@@ -1,5 +1,8 @@
 <?php
 
+/** Get a link to the database
+ * @return int|mysqli
+ */
 function get_database_link(): int | \mysqli
 {
   $host = getenv("DB_HOST");
@@ -32,6 +35,11 @@ function get_database_link(): int | \mysqli
   return $link;
 }
 
+/** Check if a database exists
+ * @param mysqli $link
+ * @param string $database
+ * @return bool
+ */
 function does_database_exist(\mysqli $link, string $database): bool
 {
   $stmt = $link->prepare("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = ?");

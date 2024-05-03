@@ -3,6 +3,8 @@
 require_once __DIR__ . "/index.php";
 require_once __DIR__ . "/../error.php";
 
+/** Set up the database and tables
+ */
 function setup_database(): void
 {
   $link = get_database_link();

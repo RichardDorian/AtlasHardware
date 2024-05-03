@@ -1,7 +1,11 @@
 <?php
 
+// Define the UUID class
 class UUID
 {
+  /** Generate a v4 UUID
+   * @return string
+   */
   public static function generate_v4()
   {
     $data = random_bytes(16);
@@ -10,6 +14,10 @@ class UUID
     return self::from_binary($data);
   }
 
+  /** Convert a binary UUID to a string
+   * @param string $binary
+   * @return string
+   */
   public static function from_binary(string $binary): string
   {
     return bin2hex($binary);

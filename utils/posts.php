@@ -5,6 +5,7 @@ include_once __DIR__ . "/database/table.php";
 include_once __DIR__ . "/uuid.php";
 include_once __DIR__ . "/user.php";
 
+// Define the PartialPost class
 class PartialPost
 {
   public string $id;
@@ -14,6 +15,13 @@ class PartialPost
   public int $performance;
   public array $images;
 
+  /** Initialize a new PartialPost object
+   * @param string $id
+   * @param string $cover
+   * @param string $title
+   * @param float $rating
+   * @param int $performance
+   */
   public function __construct(string $id, string $cover, string $title, float $rating, int $performance)
   {
     $this->id = $id;
@@ -24,21 +32,34 @@ class PartialPost
     $this->images = [];
   }
 
+  /** Fetch the images for the post
+   */
   public function fetch_images()
   {
     $this->images = Posts::get_images_for_post($this->id);
   }
 
+  /** Get the URL for the cover image
+   * @return string
+   */
   public function get_cover_url()
   {
     return $this->get_image_url($this->cover);
   }
 
+  /** Get the URL for an image
+   * @param string $id
+   * @return string
+   */
   public function get_image_url(string $id)
   {
     return "/assets/image/" . $id;
   }
 
+  /** Create a new PartialPost object from an SQL result
+   * @param array $result
+   * @return PartialPost
+   */
   public static function from_sql_result($result)
   {
     return new PartialPost(
@@ -51,6 +72,7 @@ class PartialPost
   }
 }
 
+// Define the Post class
 class Post extends PartialPost
 {
   public string $author_id;
@@ -60,6 +82,18 @@ class Post extends PartialPost
   public ?User $author;
   public float $starting_price;
 
+  /** Initialize a new Post object
+   * @param string $id
+   * @param string $cover
+   * @param string $title
+   * @param float $rating
+   * @param int $performance
+   * @param string $author
+   * @param string $date
+   * @param string $description
+   * @param string $raw_specs
+   * @param float $starting_price
+   */
   public function __construct(string $id, string $cover, string $title, float $rating, int $performance, string $author, string $date, string $description, string $raw_specs, float $starting_price)
   {
     parent::__construct($id, $cover, $title, $rating, $performance);
@@ -70,11 +104,17 @@ class Post extends PartialPost
     $this->starting_price = $starting_price;
   }
 
+  /** Fetch the author of the post
+   */
   public function fetch_author()
   {
     $this->author = Users::get_user_by_id($this->author_id);
   }
 
+  /** Create a new Post object from an SQL result
+   * @param array $result
+   * @return Post
+   */
   public static function from_sql_result($result)
   {
     return new Post(
@@ -92,15 +132,24 @@ class Post extends PartialPost
   }
 }
 
+// Define the Posts class
 class Posts extends TableRelation
 {
+  /** Get the latest posts
+   * @param int $limit
+   * @param int $offset
+   * @return array|int
+   */
   public static function get_latest_posts(int $limit = 5, int $offset = 0)
   {
+    // Query the database for the latest posts
     $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance FROM posts ORDER BY date DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
+    // Initialize an array to store the posts
     $posts = [];
 
+    // Loop through the results and create a PartialPost object for each post
     for ($i = 0; $i < $limit; $i++) {
       $res = $result->fetch_assoc();
       if (is_array($res)) $posts[] = PartialPost::from_sql_result($res);
@@ -109,13 +158,21 @@ class Posts extends TableRelation
     return $posts;
   }
 
+  /** Get the most active posts
+   * @param int $limit
+   * @param int $offset
+   * @return array|int
+   */
   public static function get_most_active_posts(int $limit = 5, int $offset = 0)
   {
+    // Query the database for the most active posts
     $result = self::sql_query("SELECT hex(posts.id) AS id, hex(cover) AS cover, title, rating, performance, COUNT(comment) nposts FROM comments RIGHT JOIN posts ON posts.id = comments.post AND comments.date >= CURDATE() - INTERVAL 7 DAY GROUP BY posts.id ORDER BY `nposts` DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
+    // Initialize an array to store the posts
     $posts = [];
 
+    // Loop through the results and create a PartialPost object for each post
     for ($i = 0; $i < $limit; $i++) {
       $res = $result->fetch_assoc();
       if (is_array($res)) $posts[] = PartialPost::from_sql_result($res);
@@ -124,13 +181,21 @@ class Posts extends TableRelation
     return $posts;
   }
 
+  /** Get the best performing posts
+   * @param int $limit
+   * @param int $offset
+   * @return array|int
+   */
   public static function get_best_perf(int $limit = 5, int $offset = 0)
   {
+    // Query the database for the best performing posts
     $result = self::sql_query("SELECT hex(id) AS id, hex(cover) AS cover, title, rating, performance, specs FROM posts ORDER BY performance DESC LIMIT ? OFFSET ?", "ii", [$limit, $offset]);
     if (gettype($result) === "integer") return $result;
 
+    // Initialize an array to store the posts
     $posts = [];
 
+    // Loop through the results and create a PartialPost object for each post
     for ($i = 0; $i < $limit; $i++) {
       $res = $result->fetch_assoc();
       if (is_array($res)) $posts[] = PartialPost::from_sql_result($res);
@@ -139,26 +204,40 @@ class Posts extends TableRelation
     return $posts;
   }
 
+  /** Get the post for the given ID
+   * @param string $id
+   * @return Post|int
+   */
   public static function get_post(string $id)
   {
+    // Query the database for the post with the given ID
     $result = self::sql_query("SELECT hex(author) AS author, hex(cover) AS cover, date, title, description, rating, performance, specs, starting_price FROM posts WHERE id = unhex(?)", "s", [$id]);
     if (gettype($result) === "integer") return $result;
 
+    // Fetch the result
     $res = $result->fetch_assoc();
     if (!is_array($res)) return 4;
 
+    // Create a new Post object from the SQL result and return it
     $res["id"] = $id;
 
     return Post::from_sql_result($res);
   }
 
+  /** Get images for the post with the given ID
+   * @param string $id
+   * @return array|int
+   */
   public static function get_images_for_post(string $id)
   {
+    // Query the database for the images of the post with the given ID
     $result = self::sql_query("SELECT hex(images.id) AS id FROM posts INNER JOIN post_images ON posts.id = post_images.post INNER JOIN images ON post_images.image = images.id WHERE posts.id = unhex(?) ORDER BY post_images.position;", "s", [$id]);
     if (gettype($result) === "integer") return $result;
 
+    // Initialize an array to store the image IDs
     $images = [];
 
+    // Loop through the results and add the image IDs to the array
     while ($res = $result->fetch_assoc()) {
       $images[] = strtolower($res["id"]);
     }
@@ -166,6 +245,17 @@ class Posts extends TableRelation
     return $images;
   }
 
+  /** Add a new post to the database
+   * @param string $user
+   * @param string $title
+   * @param string $description
+   * @param int $price
+   * @param int $performance
+   * @param float $rating
+   * @param string $specs
+   * @param array $files
+   * @return string|int
+   */
   public static function add_post(string $user, string $title, string $description, int $price, int $performance, float $rating, string $specs, array $files)
   {
     $link = get_database_link();
@@ -200,6 +290,9 @@ class Posts extends TableRelation
     return "/post/$post_id";
   }
 
+  /** Get the number of posts in the database
+   * @return int
+   */
   public static function get_number_of_posts()
   {
     $result = self::sql_query("SELECT COUNT(id) AS count FROM posts", "", []);
@@ -306,16 +399,22 @@ class Posts extends TableRelation
     return array("posts" => $posts, "error_msg" => $error_msg);
   }
 
-
+  /** Get the number of posts each month
+   * @return array|int
+   */
   public static function get_number_of_posts_each_month()
   {
+    // Query the database
     $res = self::sql_query("SELECT YEAR(date) AS annee, MONTH(date) AS mois, COUNT(id) AS nb_posts FROM posts GROUP BY annee, mois ORDER BY annee ASC, mois ASC;", "", []);
     if (gettype($res) === "integer") return $res;
+    
+    // Fetch the results
     $res = $res->fetch_all(MYSQLI_ASSOC);
 
+    // Initialize an array to store the results
     $result = array();
 
-    // Initialiser les tableaux pour chaque année avec des valeurs 0
+    // Fill the array with the years and fill the months with 0
     foreach ($res as $item) {
       $annee = $item["annee"];
       if (!isset($result[$annee])) {
@@ -338,7 +437,7 @@ class Posts extends TableRelation
       12 => "Décembre"
     );
 
-    // Remplir les données réelles
+    // Fill the array with the number of posts
     foreach ($res as $item) {
       $annee = $item["annee"];
       $mois = $item["mois"];
@@ -346,24 +445,29 @@ class Posts extends TableRelation
       $result[$annee][$mois] = $nb_posts;
     }
 
+    // Create an array with the months
     $month_array = array(
-      1 => "Janvier",
-      2 => "Février",
-      3 => "Mars",
-      4 => "Avril",
-      5 => "Mai",
-      6 => "Juin",
-      7 => "Juillet",
-      8 => "Août",
-      9 => "Septembre",
-      10 => "Octobre",
-      11 => "Novembre",
-      12 => "Décembre"
+      1 => "January",
+      2 => "February",
+      3 => "March",
+      4 => "April",
+      5 => "May",
+      6 => "June",
+      7 => "July",
+      8 => "August",
+      9 => "September",
+      10 => "October",
+      11 => "November",
+      12 => "December"
     );
 
     return ["result" => $result, "month_array" => $month_array];
   }
 
+  /** Get the author of a post
+   * @param string $post_id
+   * @return string|int
+   */
   public static function get_post_author($post_id)
   {
     $res = self::sql_query("SELECT hex(author) AS author FROM posts WHERE id = unhex(?)", "s", [$post_id]);

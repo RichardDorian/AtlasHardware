@@ -168,8 +168,9 @@ class Posts extends TableRelation
       if ($i == 0) {
         $cover = $image_id;
         $date = date("Y-m-d H:i:s");
-        $stmt = $link->prepare("INSERT INTO posts (id, author, cover, title, date, description, rating, performance, specs) VALUES (unhex(?), unhex(?), unhex(?), ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("ssssssdis", $post_id, $user, $cover, $title, $date, $description, $rating, $performance, $specs);
+        $price = floatval($price);
+        $stmt = $link->prepare("INSERT INTO posts (id, author, cover, title, date, description, rating, performance, specs, starting_price) VALUES (unhex(?), unhex(?), unhex(?), ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssdisd", $post_id, $user, $cover, $title, $date, $description, $rating, $performance, $specs, $price);
         $stmt->execute();
       }
       $stmt = $link->prepare("INSERT INTO post_images (post, image, position) VALUES (unhex(?), unhex(?), ?)");

@@ -15,7 +15,7 @@ include_once __DIR__ . "/../../utils/user_session.php";
     <div class="numbers">
       <span class="material-symbols-rounded">euro_symbol</span>
       <span class="text">
-        <?php echo $data["starting_price"] ?>
+        <?php echo round($data["starting_price"]) ?>
       </span>
       <span class="material-symbols-rounded">speed</span>
       <span class="text">

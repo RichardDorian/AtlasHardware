@@ -32,7 +32,7 @@ div.card a.main {
 /* Small card */
 div.card.small {
   width: 15vw;
-  min-width: 150px;
+  min-width: 170px;
   padding: 12px;
 }
 

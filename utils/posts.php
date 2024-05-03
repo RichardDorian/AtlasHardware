@@ -2,6 +2,7 @@
 
 include_once __DIR__ . "/database/index.php";
 include_once __DIR__ . "/database/table.php";
+include_once __DIR__ . "/uuid.php";
 include_once __DIR__ . "/user.php";
 
 class PartialPost
@@ -147,6 +148,40 @@ class Posts extends TableRelation
     return $images;
   }
 
+  public static function add_post(string $user, string $title, string $description, int $price, int $performance, float $rating, string $specs, array $files)
+  {
+    $link = get_database_link();
+    $post_id = UUID::generate_v4();
+    
+    foreach ($files["tmp_name"] as $i => $file) {
+      
+      $image_id = UUID::generate_v4();
+      #Get the blob data from the file info
+      $filedata = file_get_contents($file);
+      $position = $i;
+      $stmt = $link->prepare("INSERT INTO images (id, image) VALUES (unhex(?), ?)");
+      $stmt->bind_param("ss", $image_id, $filedata);
+      $stmt->execute();
+      if ($i == 0) {
+        $cover = $image_id;
+        $date = date("Y-m-d H:i:s");
+        $stmt = $link->prepare("INSERT INTO posts (id, author, cover, title, date, description, rating, performance, specs) VALUES (unhex(?), unhex(?), unhex(?), ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssssdis", $post_id, $user, $cover, $title, $date, $description, $rating, $performance, $specs);
+        $stmt->execute();
+      }
+      $stmt = $link->prepare("INSERT INTO post_images (post, image, position) VALUES (unhex(?), unhex(?), ?)");
+      $stmt->bind_param("ssi", $post_id, $image_id, $position);
+      $stmt->execute();
+
+      if ($stmt->errno) return $stmt->errno;
+      
+    }
+    
+
+    if ($stmt->errno) return $stmt->errno;
+    return "/post/$post_id";
+  }
+
   public static function get_number_of_posts()
   {
     $result = self::sql_query("SELECT COUNT(id) AS count FROM posts", "", []);
@@ -252,6 +287,7 @@ class Posts extends TableRelation
 
     return array("posts" => $posts, "error_msg" => $error_msg);
   }
+
 
   public static function get_number_of_posts_each_month()
   {

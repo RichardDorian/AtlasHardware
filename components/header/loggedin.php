@@ -1,4 +1,4 @@
-<a href="/post" class="with-icon">
+<a href="/add-post" class="with-icon">
   <span class="material-symbols-rounded">add</span>
   <span>Post</span>
 </a>

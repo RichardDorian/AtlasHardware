@@ -22,7 +22,7 @@ $cover_url = $post->get_cover_url();
 <html lang="en">
 <?php
 $styles = ["header.css", "post.css", "button.css", "scroll-indicator.css", "cards.css", "footer.css"];
-$scripts = ["header.js", "scroll-indicator.js", "save-unsave.js"];
+$scripts = ["header.js", "scroll-indicator.js", "comments.js", "save-unsave.js"];
 include_once __DIR__ . "/../../components/head/head.php";
 
 echo <<<HTML
@@ -177,13 +177,31 @@ HTML;
           $data = [
             "text" => "Write comment",
             "icon" => "comment",
+            "custom_props" => [
+              "id" => "write-comment-button"
+            ]
           ];
           include __DIR__ . "/../../components/button.php";
           ?>
         </div>
         <div id="comments-list">
+          <?php
+          include_once __DIR__ . "/../../utils/comment.php";
+          $comments = Comments::get_comments_of_post($post->id);
+          foreach ($comments as $comment) {
+            $comment->fetch_author();
+            $date = new DateTimeImmutable($comment->date);
 
-        </div><!--
+            $data = [
+              "author" => $comment->author->username,
+              "date" => $date->format("F j Y H:i:s"),
+              "content" => $comment->comment
+            ];
+            include __DIR__ . "/../../components/post/comment.php";
+          }
+          ?>
+        </div>
+        <!--
         <h2 id="more-builds">More builds</h2>
         <div id="more-builds-content">
           <?php /*
